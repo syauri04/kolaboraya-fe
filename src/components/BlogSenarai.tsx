@@ -37,27 +37,27 @@ export default function BlogSenarai({ posts, postsPerPage = 9 }: BlogSenaraiProp
     <section className="container mx-auto px-6 py-24">
       {/* 🌟 Featured Blog */}
       {featuredPost && (
-        <div className="grid md:grid-cols-2 gap-10 mb-16 items-center">
+        <div className="grid md:grid-cols-2 gap-10 mb-24 items-center">
           <div className="relative aspect-[620/402] rounded-[18px] overflow-hidden">
             <Image src={featuredPost.image} alt={featuredPost.title} fill className="object-cover rounded-[18px]" />
           </div>
           <div>
-            <h2 className="text-2xl font-semibold mb-4">{featuredPost.title}</h2>
-            <p className="text-gray-600 mb-4">{featuredPost.summary}</p>
-            <p className="text-sm text-gray-500">{featuredPost.date}</p>
+            <h2 className="text-4xl leading-[50px] font-bruliafont text-primary mb-4">{featuredPost.title}</h2>
+            <p className="text-primary text-lg leading-[22px] mb-4">{featuredPost.summary}</p>
+            <p className="text-primary text-lg leading-[22px] 500">{featuredPost.date}</p>
           </div>
         </div>
       )}
 
       {/* 📰 Blog List */}
-      <div className="grid md:grid-cols-3 gap-10">
+      <div className="grid md:grid-cols-3 gap-12">
         {currentPosts.map((post) => (
           <div key={post.id} className="flex flex-col">
             <div className="relative aspect-[390/219] rounded-[18px] overflow-hidden">
               <Image src={post.image} alt={post.title} fill className="object-cover rounded-[18px]" />
             </div>
-            <h3 className="text-lg font-medium mt-4 mb-2">{post.title}</h3>
-            <p className="text-sm text-gray-500">{post.date}</p>
+            <h3 className="text-2xl leading-[34px] font-bruliafont text-primary mt-4 mb-2">{post.title}</h3>
+            <p className="text-primary text-lg leading-[22px]">{post.date}</p>
           </div>
         ))}
       </div>

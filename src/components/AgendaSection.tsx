@@ -42,7 +42,7 @@ export default function AgendaSection() {
   const { ref: bottomRef, inView: bottomInView } = useInView({ triggerOnce: true, threshold: 0.3 });
 
   return (
-    <section ref={sectionRef} className="relative bg-[#EDB133] min-h-[1024px] py-28 overflow-hidden">
+    <section ref={sectionRef} className="relative bg-[#EDB133] min-h-[800px] py-18 overflow-hidden">
       {/* Ornament kiri atas (tetap di -left-24) */}
       <motion.div
         initial={{ x: -80, opacity: 0 }} // geser 80px ke kiri
@@ -86,7 +86,7 @@ export default function AgendaSection() {
 
       <div className="container mx-auto px-6 relative z-10">
         {/* Header */}
-        <div className="flex flex-col md:flex-row justify-between items-start mb-20">
+        <div className="flex flex-col md:flex-row justify-between items-start mb-18">
           {/* Kiri */}
           <motion.div initial={{ y: 80, opacity: 0 }} animate={inView ? { y: 0, opacity: 1 } : {}} transition={{ duration: 1.2, ease: "easeOut", delay: 0.3 }}>
             <h2 className="font-bruliafont text-8xl text-primary leading-[120%]">
@@ -95,9 +95,9 @@ export default function AgendaSection() {
           </motion.div>
 
           {/* Kanan */}
-          <motion.div initial={{ y: 80, opacity: 0 }} animate={inView ? { y: 0, opacity: 1 } : {}} transition={{ duration: 1.2, ease: "easeOut", delay: 0.6 }} className="max-w-md mt-4 md:mt-0">
-            <h2 className="font-bruliafont text-2xl leading-[34px] text-primary text-right">Temukan agenda menarik di sekitarmu!</h2>
-            <p className="text-primary mt-1 text-lg leading-[22px] text-right">Berkenalan dengan teman baru, temukan kolaborator, dan jadilah bagian dari ekosistem raya.</p>
+          <motion.div initial={{ y: 80, opacity: 0 }} animate={inView ? { y: 0, opacity: 1 } : {}} transition={{ duration: 1.2, ease: "easeOut", delay: 0.6 }} className="max-w-[470px] mt-4 md:mt-0">
+            <h2 className="font-bruliafont text-5xl leading-[67px] text-primary text-right">Temukan agenda menarik di sekitarmu!</h2>
+            <p className="text-primary mt-1 text-2xl leading-[29px] text-right">Berkenalan dengan teman baru, temukan kolaborator, dan jadilah bagian dari ekosistem raya.</p>
           </motion.div>
         </div>
 
@@ -121,7 +121,7 @@ export default function AgendaSection() {
               transition={{ duration: 1.2, ease: "easeOut" }}
               className="flex flex-col h-full px-7"
             >
-              <h3 className="font-bruliafont text-4xl text-primary leading-[50px] mb-3 min-h-[100px]">{agenda.title}</h3>
+              <h3 className="font-bruliafont text-4xl text-primary leading-[50px] mb-3 ">{agenda.title}</h3>
               <p className="text-primary text-lg leading-[22px] mb-2">{agenda.summary}</p>
               <p className="text-lg leading-[22px] text-[#5C5C5C] mb-8">{agenda.date}</p>
 

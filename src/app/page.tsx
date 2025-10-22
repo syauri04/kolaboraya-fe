@@ -5,12 +5,11 @@ import KolaboratorSection from "@/components/KolaboratorSection";
 import KolaborayaSection from "@/components/KolaborayaSection";
 import ProdukKolaborasi from "@/components/ProdukKolaborasi";
 import SenaraiSection from "@/components/SenaraiSection";
-import Image from "next/image";
 
 export default function Home() {
   return (
     <>
-      <Hero summary="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur elementum fringilla tortor, vel lobortis lorem blandit consectetur. Curabitur eros dolor, sollicitudin ut risus vel, efficitur viverra lorem. Vivamus volutpat, massa egestas consectetur dignissim, nisi purus volutpat turpis, in laoreet enim purus sed nibh." />
+      <Hero summary="Membangun Ekosistem Kolaborasi Raya untuk Perubahan Berdampak" page="home" />
       <Kolaborasi />
       <KolaborayaSection />
       <AgendaSection />

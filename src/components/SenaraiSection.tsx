@@ -2,6 +2,8 @@
 
 import Image from "next/image";
 import React from "react";
+import { motion, useAnimation } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 
 type SenaraiSectionProps = {
   text: string;
@@ -11,35 +13,100 @@ type SenaraiSectionProps = {
 };
 
 export default function SenaraiSection({ text, showButton = false, buttonLabel = "Selengkapnya", buttonHref = "#" }: SenaraiSectionProps) {
+  const { ref, inView } = useInView({
+    threshold: 0.7,
+    triggerOnce: true,
+  });
+
+  const controls = useAnimation();
+
+  React.useEffect(() => {
+    if (inView) controls.start("visible");
+  }, [inView, controls]);
+
   return (
-    <section className="relative bg-[#F0ACCF] min-h-[1024px] pt-28 pb-10 overflow-hidden">
+    <section ref={ref} className="relative bg-[#F0ACCF] min-h-[800px] py-18 overflow-hidden">
       <div className="container mx-auto px-6 flex flex-col gap-0">
         {/* BLOK ATAS */}
         <div className="grid grid-cols-[40%_60%]">
-          {/* Kolom kiri: oval */}
-          <div className="flex justify-center md:justify-start">
-            <div className="relative w-[434px] h-[336px] ">
+          {/* Kolom kiri: oval kiri */}
+          <motion.div
+            initial={{ x: -100, opacity: 0 }}
+            animate={controls}
+            variants={{
+              visible: { x: 0, opacity: 1, transition: { duration: 0.8, delay: 1.4, ease: "easeOut" } },
+            }}
+            className="flex justify-center md:justify-start"
+          >
+            <div className="relative w-[434px] h-[336px]">
               <Image src="/assets/Senarai-ovale.png" alt="Senarai Oval" fill className="object-cover" />
             </div>
-          </div>
+          </motion.div>
 
           {/* Kolom kanan: board + text di atasnya */}
-          <div className="flex justify-end">
-            <div className="relative w-[800px] h-[488px] z-10">
-              <Image src="/assets/Senarai-board.png" alt="Senarai Board" fill className="object-cover " />
+          <div className="flex justify-end relative">
+            {/* Senarai-board muncul dulu */}
+            <motion.div
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={controls}
+              variants={{
+                visible: {
+                  scale: 1,
+                  opacity: 1,
+                  transition: { type: "spring", stiffness: 100, damping: 12, duration: 0.6, delay: 0.1 },
+                },
+              }}
+              className="relative w-[706px] h-[430px] z-10"
+            >
+              <Image src="/assets/Senarai-board.png" alt="Senarai Board" fill className="object-cover" />
 
-              <div className="absolute top-0 -left-34 -space-y-24 ">
-                <Image src="/assets/Senarai.png" alt="Senarai" width={367} height={159} className="pointer-events-none select-none" />
-                <Image src="/assets/Cerita.png" alt="Cerita" width={367} height={159} className="pointer-events-none select-none ml-50" />
+              {/* Teks di atas board (Senarai, Cerita, underline) */}
+              <div className="absolute -top-10 -left-34 -space-y-20">
+                <motion.div
+                  initial={{ scale: 0.6, opacity: 0 }}
+                  animate={controls}
+                  variants={{
+                    visible: { scale: 1, opacity: 1, transition: { delay: 0.8, duration: 0.6, type: "spring", bounce: 0.35 } },
+                  }}
+                >
+                  <Image src="/assets/Senarai.png" alt="Senarai" width={367} height={159} className="pointer-events-none select-none" />
+                </motion.div>
+
+                <motion.div
+                  initial={{ scale: 0.6, opacity: 0 }}
+                  animate={controls}
+                  variants={{
+                    visible: { scale: 1, opacity: 1, transition: { delay: 0.9, duration: 0.6, type: "spring", bounce: 0.35 } },
+                  }}
+                >
+                  <Image src="/assets/Cerita.png" alt="Cerita" width={321} height={159} className="pointer-events-none select-none ml-50" />
+                </motion.div>
+
+                <motion.div
+                  initial={{ scale: 0.6, opacity: 0 }}
+                  animate={controls}
+                  variants={{
+                    visible: { scale: 1, opacity: 1, transition: { delay: 1.2, duration: 0.9, type: "spring", bounce: 0.35 } },
+                  }}
+                >
+                  <Image src="/assets/underline-shadowtxt.png" alt="underline" width={295} height={80} className="pointer-events-none select-none ml-54 mt-12" />
+                </motion.div>
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
 
         {/* BLOK BAWAH */}
-        <div className="grid grid-cols-[30%_70%]">
-          {/* Kiri: teks */}
-          <div className="pr-20">
+        <div className="grid grid-cols-[40%_60%]">
+          {/* Kiri: teks muncul dari bawah */}
+          <motion.div
+            initial={{ y: 50, opacity: 0 }}
+            animate={controls}
+            variants={{
+              visible: { y: 0, opacity: 1, transition: { delay: 1.6, duration: 0.8, ease: "easeOut" } },
+            }}
+            className="pr-20"
+          >
             <p className="text-primary text-lg leading-[22px] mb-10 whitespace-pre-line">{text}</p>
 
             {showButton && (
@@ -47,19 +114,37 @@ export default function SenaraiSection({ text, showButton = false, buttonLabel =
                 <button className="bg-[#386366] text-white text-2xl font-bruliafont px-4 py-2 rounded-lg hover:bg-[#7b91c8] transition">{buttonLabel}</button>
               </a>
             )}
-          </div>
+          </motion.div>
 
-          {/* Kanan: Foto + oval */}
+          {/* Kanan: Foto + oval kanan */}
           <div className="flex justify-start relative">
-            {/* Foto utama */}
-            <div className="relative w-[800px] h-[488px] z-20 -top-24 ml-20">
-              <Image src="/assets/Senarai-image.png" alt="Senarai Board" fill className="object-cover" />
+            {/* Foto utama (bounce) */}
+            <motion.div
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={controls}
+              variants={{
+                visible: {
+                  scale: 1,
+                  opacity: 1,
+                  transition: { type: "spring", stiffness: 100, damping: 12, duration: 0.6, delay: 0.25 },
+                },
+              }}
+              className="relative w-[706px] h-[430px] z-20 -top-20 ml-8 shadow-[10px_14px_28px_rgba(78,57,28,0.28)]"
+            >
+              <Image src="/assets/Senarai-image.png" alt="Senarai Image" fill className="object-cover" />
 
-              {/* Oval */}
-              <div className="absolute -bottom-8 -right-36">
+              {/* Oval kanan: slide dari kanan */}
+              <motion.div
+                initial={{ x: 100, opacity: 0 }}
+                animate={controls}
+                variants={{
+                  visible: { x: 0, opacity: 1, transition: { duration: 0.8, delay: 1.2, ease: "easeOut" } },
+                }}
+                className="absolute -bottom-8 -right-36"
+              >
                 <Image src="/assets/Senarai-ovale.png" alt="Senarai" width={434} height={336} className="pointer-events-none select-none" />
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
           </div>
         </div>
       </div>

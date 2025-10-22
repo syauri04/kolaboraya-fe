@@ -13,8 +13,8 @@ export default function Agenda() {
 
   return (
     <div>
-      <section ref={ref} className="relative bg-[#EDB133] h-[1024px] flex items-center overflow-hidden mt-[85px]">
-        <div className="container mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-2 gap-10 items-center relative z-10">
+      <section ref={ref} className="relative bg-[#EDB133] h-[715px] flex items-center overflow-hidden mt-[85px]">
+        <div className="container mx-auto px-6  grid grid-cols-1 md:grid-cols-2 gap-10 items-center relative z-10">
           {/* Text Content */}
           <div className="max-w-[466px] text-primary">
             <motion.h2 initial={{ opacity: 0, y: 50 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6, ease: "easeOut" }} className="text-8xl font-bruliafont leading-[120%] ">
@@ -28,7 +28,7 @@ export default function Agenda() {
         </div>
 
         {/* Ornament Image */}
-        <motion.div initial={{ opacity: 0, x: 200 }} animate={inView ? { opacity: 1, x: 0 } : {}} transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }} className="absolute w-full h-[1024px] ">
+        <motion.div initial={{ opacity: 0, x: 200 }} animate={inView ? { opacity: 1, x: 0 } : {}} transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }} className="absolute w-full h-[800px] ">
           <Image
             src="/assets/bg-agenda.png" // ganti dengan path ornament image kamu
             alt="Ornament"

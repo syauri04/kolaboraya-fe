@@ -6,13 +6,13 @@ import { MdEmail } from "react-icons/md";
 
 export default function Footer() {
   return (
-    <footer className="w-full">
+    <footer className="w-full relative z-20">
       {/* Main footer */}
       <div className="bg-[#386366] text-white py-14 ">
         <div className="container mx-auto flex flex-col md:flex-row justify-between px-6 ">
           {/* Logo */}
           <div className="mb-6 md:mb-0">
-            <Image src="/assets/logo.png" alt="Pasar Kolaboraya" width={430} height={100} className="object-contain w-[181px] md:w-[430px]" />
+            <Image src="/assets/logo-footer.png" alt="Pasar Kolaboraya" width={304} height={302} className="object-contain " />
           </div>
 
           {/* Kontak & Sosial Media */}

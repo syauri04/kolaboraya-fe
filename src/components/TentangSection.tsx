@@ -17,7 +17,7 @@ type TentangSectionProps = {
 const TentangSection: React.FC<TentangSectionProps> = ({ bgColor = "#729E81", title, titleColor = "#000000", summary, summaryColor = "#5C5C5C", image }) => {
   const [ref, inView] = useInView({
     triggerOnce: true,
-    threshold: 0.5,
+    threshold: 0.7,
   });
 
   // Animasi container → stagger antar child
@@ -46,7 +46,7 @@ const TentangSection: React.FC<TentangSectionProps> = ({ bgColor = "#729E81", ti
   };
 
   return (
-    <section ref={ref} className="relative py-24 min-h-[1024px]" style={{ backgroundColor: bgColor }}>
+    <section ref={ref} className="relative py-18 min-h-[800px]" style={{ backgroundColor: bgColor }}>
       <motion.div className="container mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-10 relative z-10" variants={containerVariants} initial="hidden" animate={inView ? "visible" : "hidden"}>
         {/* Text Content */}
         <div className="max-w-[466px]">
@@ -63,7 +63,7 @@ const TentangSection: React.FC<TentangSectionProps> = ({ bgColor = "#729E81", ti
 
       {/* Ornament Image */}
       <motion.div className="absolute bottom-0 right-0" variants={imageVariants} initial="hidden" animate={inView ? "visible" : "hidden"}>
-        <Image src={image} alt="Ornament" width={1300} height={700} className="object-contain" />
+        <Image src={image} alt="Ornament" width={1024} height={700} className="object-contain" />
       </motion.div>
     </section>
   );

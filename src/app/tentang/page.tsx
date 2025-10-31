@@ -5,11 +5,11 @@ const sections = [
   {
     bgColor: "#729E81",
     title: "Kolaboraya Sebagai Cara Interaksi",
-    titleColor: "#191919",
+    titleColor: "#FFFBE9",
     summary: `
       <strong>Komunikasi Raya adalah pendekatan yang menjadikan komunikasi sebagai strategi inti untuk mengakselerasi perubahan sosial.</strong> Lebih dari sekadar penyampaian informasi, Komunikasi Raya berfokus membangun koneksi mendalam di setiap interaksi, memfasilitasi pertukaran gagasan dan pemahaman dengan setara, serta menggerakkan aksi kolektif melalui komunikasi berbasis kekuatan dan harapan.
     `,
-    summaryColor: "#5C5C5C",
+    summaryColor: "#FFFBE9",
     image: "/assets/bg-interaksi.png",
   },
   {

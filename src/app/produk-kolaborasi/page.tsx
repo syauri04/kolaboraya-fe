@@ -13,11 +13,11 @@ export default function ProdukKolaborasi() {
 
   return (
     <div>
-      <section ref={ref} className="relative bg-[#729E81] h-[715px] flex items-end overflow-hidden mt-[85px]">
-        <div className="container mx-auto px-6 md:px-12 relative z-10">
+      <section ref={ref} className="relative bg-[#729E81] h-[715px] flex items-start overflow-hidden mt-[85px]">
+        <div className="container mx-auto px-6  relative z-10">
           {/* Text Content di bawah kiri */}
           <div className="max-w-[466px] text-primary">
-            <motion.h2 initial={{ opacity: 0, y: 50 }} animate={inView ? { opacity: 1, y: -90 } : {}} transition={{ duration: 0.6, ease: "easeOut" }} className="text-8xl font-bruliafont leading-[120%]">
+            <motion.h2 initial={{ opacity: 0, y: -100 }} animate={inView ? { opacity: 1, y: 80 } : {}} transition={{ duration: 0.6, ease: "easeOut" }} className="text-8xl font-bruliafont leading-[120%]">
               Produk <br />
               Kolaborasi
             </motion.h2>
@@ -25,8 +25,8 @@ export default function ProdukKolaborasi() {
         </div>
 
         {/* Ornament Background Atas */}
-        <motion.div initial={{ opacity: 0, y: -200 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }} className="absolute w-full h-[750px]">
-          <Image src="/assets/bg-produk-new.png" alt="Ornament" fill className="object-contain object-right" />
+        <motion.div initial={{ opacity: 0, y: 200 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }} className="absolute w-full h-[750px]">
+          <Image src="/assets/bg-produk.png" alt="Ornament" fill className="object-contain object-right" />
         </motion.div>
 
         {/* Ornament Tambahan di pojok kanan bawah */}

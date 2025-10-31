@@ -54,7 +54,7 @@ const TentangSection: React.FC<TentangSectionProps> = ({ bgColor = "#729E81", ti
             {title}
           </motion.h2>
 
-          <motion.div variants={textVariants} className="text-lg leading-[25px]" style={{ color: summaryColor }} dangerouslySetInnerHTML={{ __html: summary }} />
+          <motion.div variants={textVariants} className="text-2xl leading-[29px]" style={{ color: summaryColor }} dangerouslySetInnerHTML={{ __html: summary }} />
         </div>
 
         {/* Spacer biar image turun di mobile */}

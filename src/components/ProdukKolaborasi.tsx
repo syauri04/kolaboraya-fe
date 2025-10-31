@@ -19,6 +19,13 @@ export default function ProdukKolaborasi() {
       title: "ALAT BANTU",
       image: "/assets/produk-alat.png",
       summary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur elementum fringilla tortor, vel lobortis lorem blandit consectetur.",
+      button: false,
+    },
+    {
+      id: 3,
+      title: "AUDIO VISUAL",
+      image: "/assets/audio-visual.png",
+      summary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur elementum fringilla tortor, vel lobortis lorem blandit consectetur.",
       button: true,
     },
   ];
@@ -80,22 +87,20 @@ export default function ProdukKolaborasi() {
       </motion.div>
 
       {/* Ornament kiri bawah */}
-      <motion.div variants={fadeBottom} initial="hidden" animate={controls} className="absolute -bottom-20 left-10 z-0 pointer-events-none">
-        <Image src="/assets/ornament-produk.png" alt="ornament kiri bawah" width={700} height={600} />
+      <motion.div variants={fadeBottom} initial="hidden" animate={controls} className="absolute -bottom-20 right-0 z-0 pointer-events-none">
+        <Image src="/assets/ornament-produk.png" alt="ornament kiri bawah" width={600} height={555} className="scale-x-[-1]" />
       </motion.div>
 
-      <div className="relative container mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 px-6 z-10">
+      <div className="relative container mx-auto grid grid-cols-1 px-6 z-10">
         {/* Title kiri */}
         <motion.div variants={fadeUp} initial="hidden" animate={controls} className="text-center md:text-left">
-          <h2 className="text-6xl md:text-8xl font-bruliafont text-primary leading-[1.2]">
-            Produk <br className="hidden md:block" /> Kolaborasi
-          </h2>
+          <h2 className="text-6xl md:text-8xl font-bruliafont text-primary leading-[1.2]">Produk Kolaborasi</h2>
         </motion.div>
 
         {/* List produk */}
-        <motion.div variants={staggerContainer} initial="hidden" animate={controls} className="grid grid-cols-1 sm:grid-cols-2 gap-10">
+        <motion.div variants={staggerContainer} initial="hidden" animate={controls} className="pt-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 xl:pr-[280px]">
           {products.map((item) => (
-            <motion.article key={item.id} variants={fadeUp} className="flex flex-col" aria-labelledby={`produk-title-${item.id}`}>
+            <motion.article key={item.id} variants={fadeUp} className="flex flex-col " aria-labelledby={`produk-title-${item.id}`}>
               {/* Gambar produk */}
               <div className="relative rounded-t-[50px] w-full aspect-square overflow-hidden">
                 <Image src={item.image} alt={item.title} fill className="object-cover" />
@@ -105,7 +110,7 @@ export default function ProdukKolaborasi() {
               <div className="relative -mt-6 z-10">
                 <div className="relative flex items-center justify-center">
                   <Image src="/assets/ornament-card-produk.png" alt="title background" width={500} height={80} className="w-full h-[60px] md:h-[80px] object-cover" />
-                  <h3 id={`produk-title-${item.id}`} className="absolute text-white font-bruliafont text-4xl md:text-[40px] uppercase tracking-wide">
+                  <h3 id={`produk-title-${item.id}`} className="absolute text-white font-bruliafont text-4xl uppercase tracking-wide">
                     {item.title}
                   </h3>
                 </div>
@@ -113,7 +118,7 @@ export default function ProdukKolaborasi() {
 
               {/* Summary */}
               <div className="mt-4">
-                <p className="text-primary text-lg leading-[22px] mb-4">{item.summary}</p>
+                <p className="text-primary text-2xl leading-[29px] mb-4">{item.summary}</p>
               </div>
             </motion.article>
           ))}
@@ -130,7 +135,7 @@ export default function ProdukKolaborasi() {
         animate={controls}
         className="container mx-auto px-6"
       >
-        <div className="flex justify-end mt-20">
+        <div className="flex justify-start mt-20">
           <button className="bg-[#386366] text-white text-2xl font-bruliafont px-6 py-3 rounded-lg hover:bg-[#7b91c8] transition">Selengkapnya</button>
         </div>
       </motion.div>

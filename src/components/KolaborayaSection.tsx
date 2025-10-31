@@ -16,19 +16,19 @@ export default function KolaborayaSection() {
       // Lingkaran 1
       controls.start({
         clipPath: "circle(100% at 50% 50%)",
-        transition: { duration: 1, ease: "easeInOut" },
+        transition: { duration: 1.3, ease: "easeInOut" },
       });
 
       // Lingkaran 2 — mulai overlap sedikit sebelum 1 selesai
       controls2.start({
         clipPath: "circle(100% at 50% 50%)",
-        transition: { duration: 1.2, ease: "easeInOut", delay: 1.2 },
+        transition: { duration: 1.3, ease: "easeInOut", delay: 1 },
       });
 
       // Lingkaran 3 — mulai overlap lagi sedikit
       controls3.start({
         clipPath: "circle(100% at 50% 50%)",
-        transition: { duration: 1.4, ease: "easeInOut", delay: 2.0 },
+        transition: { duration: 1.3, ease: "easeInOut", delay: 2 },
       });
     }
   }, [inView, controls, controls2, controls3]);
@@ -36,7 +36,7 @@ export default function KolaborayaSection() {
   return (
     <section ref={inViewRef} className="relative bg-[#6E87A8] w-full  overflow-hidden">
       <div className="max-w-6xl mx-auto flex flex-col  items-center justify-center relative">
-        <div className="relative w-full h-[650px] flex justify-center items-center overflow-hidden">
+        <div className="relative w-full h-[500px] lg:h-[650px] flex justify-center items-center overflow-hidden">
           {/* Lingkaran variant 1 */}
           <motion.img src="/assets/circle-variant1.png" alt="Lingkaran Kecil" initial={{ clipPath: "circle(0% at 50% 50%)" }} animate={controls} className="absolute w-[700px] object-cover block" />
 

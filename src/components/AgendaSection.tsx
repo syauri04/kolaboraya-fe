@@ -4,6 +4,7 @@ import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
+import { useEffect, useRef, useState } from "react";
 
 type AgendaItem = {
   id: number;
@@ -40,6 +41,20 @@ const agendas: AgendaItem[] = [
 export default function AgendaSection() {
   const { ref: sectionRef, inView } = useInView({ triggerOnce: true, threshold: 0.2 });
   const { ref: bottomRef, inView: bottomInView } = useInView({ triggerOnce: true, threshold: 0.3 });
+  const sliderRef = useRef<HTMLDivElement>(null);
+  const [width, setWidth] = useState(0);
+
+  useEffect(() => {
+    const slider = sliderRef.current;
+    if (slider) {
+      const updateWidth = () => {
+        setWidth(slider.scrollWidth - slider.offsetWidth);
+      };
+      updateWidth();
+      window.addEventListener("resize", updateWidth);
+      return () => window.removeEventListener("resize", updateWidth);
+    }
+  }, [agendas.length]);
 
   return (
     <section ref={sectionRef} className="relative bg-[#EDB133] min-h-[800px] py-18 overflow-hidden">
@@ -86,7 +101,7 @@ export default function AgendaSection() {
 
       <div className="container mx-auto px-6 relative z-10">
         {/* Header */}
-        <div className="flex flex-col md:flex-row justify-between items-start mb-18">
+        <div className="flex flex-col lg:flex-row justify-between items-start mb-18">
           {/* Kiri */}
           <motion.div initial={{ y: 80, opacity: 0 }} animate={inView ? { y: 0, opacity: 1 } : {}} transition={{ duration: 1.2, ease: "easeOut", delay: 0.3 }}>
             <h2 className="font-bruliafont text-8xl text-primary leading-[120%]">
@@ -96,12 +111,12 @@ export default function AgendaSection() {
 
           {/* Kanan */}
           <motion.div initial={{ y: 80, opacity: 0 }} animate={inView ? { y: 0, opacity: 1 } : {}} transition={{ duration: 1.2, ease: "easeOut", delay: 0.6 }} className="max-w-[470px] mt-4 md:mt-0">
-            <h2 className="font-bruliafont text-5xl leading-[67px] text-primary text-right">Temukan agenda menarik di sekitarmu!</h2>
-            <p className="text-primary mt-1 text-2xl leading-[29px] text-right">Berkenalan dengan teman baru, temukan kolaborator, dan jadilah bagian dari ekosistem raya.</p>
+            <h2 className="font-bruliafont text-5xl leading-[67px] text-primary lg:text-right">Temukan agenda menarik di sekitarmu!</h2>
+            <p className="text-primary mt-1 text-2xl leading-[29px] lg:text-right">Berkenalan dengan teman baru, temukan kolaborator, dan jadilah bagian dari ekosistem raya.</p>
           </motion.div>
         </div>
 
-        {/* Grid Cards */}
+        {/* GRID DESKTOP (tetap sama) */}
         <motion.div
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
@@ -109,7 +124,7 @@ export default function AgendaSection() {
             hidden: {},
             visible: { transition: { staggerChildren: 0.3 } },
           }}
-          className="-mx-[28px]  grid grid-cols-1 md:grid-cols-3 divide-x-[3px] divide-black"
+          className="-mx-[28px] hidden lg:grid grid-cols-3 divide-x-[3px] divide-black"
         >
           {agendas.map((agenda) => (
             <motion.div
@@ -121,7 +136,7 @@ export default function AgendaSection() {
               transition={{ duration: 1.2, ease: "easeOut" }}
               className="flex flex-col h-full px-7"
             >
-              <h3 className="font-bruliafont text-4xl text-primary leading-[50px] mb-3 ">{agenda.title}</h3>
+              <h3 className="font-bruliafont text-4xl text-primary leading-[50px] mb-3">{agenda.title}</h3>
               <p className="text-primary text-lg leading-[22px] mb-2">{agenda.summary}</p>
               <p className="text-lg leading-[22px] text-[#5C5C5C] mb-8">{agenda.date}</p>
 
@@ -140,7 +155,32 @@ export default function AgendaSection() {
           ))}
         </motion.div>
 
-        {/* Button Selengkapnya */}
+        {/* SLIDER MOBILE (revisi fix) */}
+        <motion.div ref={sliderRef} className="lg:hidden cursor-grab active:cursor-grabbing overflow-hidden -mx-6">
+          <motion.div drag="x" dragConstraints={{ right: 0, left: -width }} className="flex gap-8  pb-6">
+            {agendas.map((agenda) => (
+              <motion.div key={agenda.id} className="flex-shrink-0 w-[420px] flex flex-col ml-6  snap-start">
+                <h3 className="font-bruliafont text-4xl text-primary leading-[50px] mb-3">{agenda.title}</h3>
+                <p className="text-primary text-lg leading-[22px] mb-2">{agenda.summary}</p>
+                <p className="text-lg leading-[22px] text-[#5C5C5C] mb-8">{agenda.date}</p>
+
+                <button className="flex items-center gap-6 text-primary font-bruliafont text-2xl mb-8 mt-auto ml-auto">
+                  Baca Lebih lanjut
+                  <span className="flex items-center">
+                    <span className="block w-20 h-[3px] bg-[#191919]"></span>
+                    <ArrowRight size={24} strokeWidth={2} className="-ml-2 text-primary" />
+                  </span>
+                </button>
+
+                <div className="w-full aspect-[389/219] relative">
+                  <Image src={agenda.image} alt={agenda.title} fill className="object-cover " />
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </motion.div>
+
+        {/* Tombol Selengkapnya tetap */}
         <motion.div initial={{ opacity: 0 }} animate={inView ? { opacity: 1 } : {}} transition={{ duration: 1.2, ease: "easeOut", delay: 1.2 }} className="flex justify-center mt-12">
           <button className="bg-[#386366] text-white text-2xl font-bruliafont px-4 py-2 rounded-lg hover:bg-[#7b91c8] transition">Selengkapnya</button>
         </motion.div>

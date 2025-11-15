@@ -88,7 +88,10 @@ export default function ListProduk() {
   // pagination logic
   const totalPages = Math.ceil(filteredProduk.length / itemsPerPage);
   const startIdx = (currentPage - 1) * itemsPerPage;
-  const currentProduks = filteredProduk.slice(startIdx, startIdx + itemsPerPage);
+  const currentProduks = filteredProduk.slice(
+    startIdx,
+    startIdx + itemsPerPage
+  );
 
   const handlePageChange = (page: number) => {
     if (page >= 1 && page <= totalPages) {
@@ -97,9 +100,9 @@ export default function ListProduk() {
   };
 
   return (
-    <section className="container mx-auto py-20 px-6 bg-[#FFFBE9]">
+    <section className="container mx-auto py-14 md:py-20 px-6 bg-[#FFFBE9]">
       {/* Filter Categories */}
-      <div className="flex flex-wrap justify-center gap-3 mb-20">
+      <div className="flex flex-wrap justify-start md:justify-center gap-3 mb-8 md:mb-20">
         {categories.map((cat) => (
           <button
             key={cat}
@@ -107,7 +110,11 @@ export default function ListProduk() {
               setActiveCategory(cat);
               setCurrentPage(1); // reset page ketika ganti kategori
             }}
-            className={`px-4 py-2 border rounded-md text-sm md:text-base cursor-pointer transition-all ${activeCategory === cat ? "bg-[#386366] text-white border-[#386366]" : "bg-transparent text-black border-gray-300 hover:bg-gray-100"}`}
+            className={`px-4 py-2 border rounded-md text-sm md:text-base cursor-pointer transition-all ${
+              activeCategory === cat
+                ? "bg-[#386366] text-white border-[#386366]"
+                : "bg-transparent text-black border-gray-300 hover:bg-gray-100"
+            }`}
           >
             {cat}
           </button>
@@ -115,21 +122,38 @@ export default function ListProduk() {
       </div>
 
       {/* Grid Agendas */}
-      <motion.div layout className="grid grid-cols-1 md:grid-cols-4 gap-10">
+      <motion.div layout className="grid grid-cols-2 lg:grid-cols-4 gap-10">
         <AnimatePresence>
           {currentProduks.map((produk, index) => {
             return (
-              <motion.div key={produk.id} layout initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -30 }} transition={{ duration: 0.3 }} className="flex flex-col h-full bg-transparent">
+              <motion.div
+                key={produk.id}
+                layout
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -30 }}
+                transition={{ duration: 0.3 }}
+                className="flex flex-col h-full bg-transparent"
+              >
                 {/* Image */}
                 <div className="w-full aspect-square relative mb-4">
-                  <Image src={produk.image} alt={produk.title} fill className="object-cover rounded-[18px]" />
+                  <Image
+                    src={produk.image}
+                    alt={produk.title}
+                    fill
+                    className="object-cover rounded-[18px]"
+                  />
                 </div>
 
                 {/* Title */}
-                <h3 className="font-bruliafont text-2xl leading-[34px] text-primary mb-2">{produk.title}</h3>
+                <h3 className="font-bruliafont text-xl sm:text-2xl leading-[120%] sm:leading-[34px] text-primary mb-2">
+                  {produk.title}
+                </h3>
 
                 {/* Summary */}
-                <p className="text-lg leading-[22px] text-[#5C5C5C]">{produk.summary}</p>
+                <p className="text-base sm:text-lg leading-[120%] sm:leading-[22px] text-[#5C5C5C]">
+                  {produk.summary}
+                </p>
               </motion.div>
             );
           })}
@@ -139,18 +163,34 @@ export default function ListProduk() {
       {/* Pagination */}
       {totalPages > 1 && (
         <div className="flex justify-center items-center gap-2 mt-12">
-          <button onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1} className="px-3 py-1 border rounded-md disabled:opacity-50">
+          <button
+            onClick={() => handlePageChange(currentPage - 1)}
+            disabled={currentPage === 1}
+            className="px-3 py-1 border rounded-md disabled:opacity-50"
+          >
             Prev
           </button>
           {[...Array(totalPages)].map((_, idx) => {
             const page = idx + 1;
             return (
-              <button key={page} onClick={() => handlePageChange(page)} className={`px-3 py-1 border rounded-md ${currentPage === page ? "bg-[#386366] text-white border-[#386366]" : "bg-white"}`}>
+              <button
+                key={page}
+                onClick={() => handlePageChange(page)}
+                className={`px-3 py-1 border rounded-md ${
+                  currentPage === page
+                    ? "bg-[#386366] text-white border-[#386366]"
+                    : "bg-white"
+                }`}
+              >
                 {page}
               </button>
             );
           })}
-          <button onClick={() => handlePageChange(currentPage + 1)} disabled={currentPage === totalPages} className="px-3 py-1 border rounded-md disabled:opacity-50">
+          <button
+            onClick={() => handlePageChange(currentPage + 1)}
+            disabled={currentPage === totalPages}
+            className="px-3 py-1 border rounded-md disabled:opacity-50"
+          >
             Next
           </button>
         </div>

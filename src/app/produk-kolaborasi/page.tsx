@@ -3,6 +3,7 @@
 import ListProduk from "@/components/ListProduk";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
 
 export default function ProdukKolaborasi() {
@@ -11,13 +12,32 @@ export default function ProdukKolaborasi() {
     threshold: 0.5,
   });
 
+  const [isSmall, setIsSmall] = useState(false);
+
+  useEffect(() => {
+    const checkScreen = () => {
+      setIsSmall(window.innerWidth < 640); // < sm
+    };
+    checkScreen();
+    window.addEventListener("resize", checkScreen);
+    return () => window.removeEventListener("resize", checkScreen);
+  }, []);
+
   return (
     <div>
-      <section ref={ref} className="relative bg-[#729E81] h-[715px] flex items-start overflow-hidden mt-[85px]">
+      <section
+        ref={ref}
+        className="relative bg-[#729E81]  h-auto lg:h-[668px] xl:h-[715px] flex flex-col lg:flex-row items-start overflow-hidden mt-[85px]"
+      >
         <div className="container mx-auto px-6  relative z-10">
           {/* Text Content di bawah kiri */}
           <div className="max-w-[466px] text-primary">
-            <motion.h2 initial={{ opacity: 0, y: -100 }} animate={inView ? { opacity: 1, y: 80 } : {}} transition={{ duration: 0.6, ease: "easeOut" }} className="text-8xl font-bruliafont leading-[120%]">
+            <motion.h2
+              initial={{ opacity: 0, y: -100 }}
+              animate={inView ? { opacity: 1, y: isSmall ? 35 : 60 } : {}}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+              className="text-[48px] md:text-8xl font-bruliafont leading-[120%] mb-12 sm:mb-0"
+            >
               Produk <br />
               Kolaborasi
             </motion.h2>
@@ -25,8 +45,18 @@ export default function ProdukKolaborasi() {
         </div>
 
         {/* Ornament Background Atas */}
-        <motion.div initial={{ opacity: 0, y: 200 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }} className="absolute w-full h-[750px]">
-          <Image src="/assets/bg-produk.png" alt="Ornament" fill className="object-contain object-right" />
+        <motion.div
+          initial={{ opacity: 0, y: 200 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
+          className="relative lg:absolute w-full h-[360px] md:h-[425px] lg:h-[570px] xl:h-[750px] bottom-0"
+        >
+          <Image
+            src="/assets/bg-produk.png"
+            alt="Ornament"
+            fill
+            className="object-cover sm:object-contain object-center sm:object-right"
+          />
         </motion.div>
 
         {/* Ornament Tambahan di pojok kanan bawah */}

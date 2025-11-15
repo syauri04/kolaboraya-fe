@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { motion, useAnimation, Variants } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export default function ProdukKolaborasi() {
   const products = [
@@ -11,118 +11,254 @@ export default function ProdukKolaborasi() {
       id: 1,
       title: "MODUL",
       image: "/assets/produk-modul.png",
-      summary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur elementum fringilla tortor, vel lobortis lorem blandit consectetur.",
+      summary:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur elementum fringilla tortor, vel lobortis lorem blandit consectetur.",
       button: false,
     },
     {
       id: 2,
       title: "ALAT BANTU",
       image: "/assets/produk-alat.png",
-      summary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur elementum fringilla tortor, vel lobortis lorem blandit consectetur.",
+      summary:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur elementum fringilla tortor, vel lobortis lorem blandit consectetur.",
       button: false,
     },
     {
       id: 3,
       title: "AUDIO VISUAL",
       image: "/assets/audio-visual.png",
-      summary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur elementum fringilla tortor, vel lobortis lorem blandit consectetur.",
+      summary:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur elementum fringilla tortor, vel lobortis lorem blandit consectetur.",
       button: true,
     },
   ];
 
   // Animasi & inView setup
   const controls = useAnimation();
+
+  // Threshold responsive
+  const [thresholdValue, setThresholdValue] = useState(0.5);
+
+  useEffect(() => {
+    const updateThreshold = () => {
+      if (window.innerWidth <= 768) {
+        setThresholdValue(0.2); // mobile lebih sensitif
+      } else {
+        setThresholdValue(0.5);
+      }
+    };
+
+    updateThreshold();
+    window.addEventListener("resize", updateThreshold);
+    return () => window.removeEventListener("resize", updateThreshold);
+  }, []);
+
   const { ref, inView } = useInView({
     triggerOnce: true,
-    threshold: 0.5,
+    threshold: thresholdValue,
   });
 
   useEffect(() => {
     if (inView) controls.start("visible");
   }, [inView, controls]);
 
-  // Variants (TS-friendly) — tidak memakai `ease` yang bermasalah
+  // Motion Variants
   const fadeUp: Variants = {
     hidden: { opacity: 0, y: 60 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 1.2 }, // lebih lambat -> santai
-    },
+    visible: { opacity: 1, y: 0, transition: { duration: 1.2 } },
   };
 
   const fadeRight: Variants = {
     hidden: { opacity: 0, x: 140 },
-    visible: {
-      opacity: 1,
-      x: 0,
-      transition: { duration: 1.4 },
-    },
+    visible: { opacity: 1, x: 0, transition: { duration: 1.4 } },
   };
 
   const fadeBottom: Variants = {
     hidden: { opacity: 0, y: 140 },
-    visible: {
-      opacity: 1,
-      y: 90,
-      transition: { duration: 1.4 },
-    },
+    visible: { opacity: 1, y: 90, transition: { duration: 1.4 } },
   };
 
   const staggerContainer: Variants = {
     hidden: {},
     visible: {
-      transition: {
-        staggerChildren: 0.45, // lambat, bergantian santai
-        delayChildren: 0.18,
-      },
+      transition: { staggerChildren: 0.45, delayChildren: 0.18 },
     },
   };
 
+  // Dragable slider
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [width, setWidth] = useState(0);
+
+  useEffect(() => {
+    if (containerRef.current) {
+      setWidth(
+        containerRef.current.scrollWidth - containerRef.current.offsetWidth
+      );
+    }
+  }, []);
+
   return (
-    <section ref={ref} className="relative bg-[#C8DDC1] py-20 min-h-[800px] overflow-hidden">
+    <section
+      ref={ref}
+      className="relative bg-[#C8DDC1] py-18 sm:py-20 min-h-[1000px] sm:min-h-[1329px] lg:min-h-[800px] overflow-hidden"
+    >
       {/* Ornament kanan atas */}
-      <motion.div variants={fadeRight} initial="hidden" animate={controls} className="absolute -top-20 -right-24 z-0 pointer-events-none">
-        <Image src="/assets/ornament-flower.png" alt="ornament kanan atas" width={340} height={340} />
+      <motion.div
+        variants={fadeRight}
+        initial="hidden"
+        animate={controls}
+        className="absolute -top-20 -right-24 z-0 pointer-events-none"
+      >
+        <div className="relative w-[210px] h-[210px] sm:w-[340px] sm:h-[247px]">
+          <Image
+            src="/assets/ornament-flower.png"
+            alt="ornament kanan atas"
+            fill
+            className="object-contain pointer-events-none select-none"
+          />
+        </div>
       </motion.div>
 
       {/* Ornament kiri bawah */}
-      <motion.div variants={fadeBottom} initial="hidden" animate={controls} className="absolute -bottom-20 right-0 z-0 pointer-events-none">
-        <Image src="/assets/ornament-produk.png" alt="ornament kiri bawah" width={600} height={555} className="scale-x-[-1]" />
+      <motion.div
+        variants={fadeBottom}
+        initial="hidden"
+        animate={controls}
+        className="absolute bottom-0 sm:-bottom-20 right-20 lg:right-0 z-0 pointer-events-none"
+      >
+        <Image
+          src="/assets/ornament-produk.png"
+          alt="ornament kiri bawah"
+          width={600}
+          height={555}
+          className="scale-x-[-1]"
+        />
       </motion.div>
 
       <div className="relative container mx-auto grid grid-cols-1 px-6 z-10">
         {/* Title kiri */}
-        <motion.div variants={fadeUp} initial="hidden" animate={controls} className="text-center md:text-left">
-          <h2 className="text-6xl md:text-8xl font-bruliafont text-primary leading-[1.2]">Produk Kolaborasi</h2>
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          animate={controls}
+          className="text-left"
+        >
+          <h2 className="text-5xl  sm:text-8xl font-bruliafont text-primary leading-[120%] sm:leading-[1.2]">
+            Produk Kolaborasi
+          </h2>
         </motion.div>
 
-        {/* List produk */}
-        <motion.div variants={staggerContainer} initial="hidden" animate={controls} className="pt-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 xl:pr-[280px]">
-          {products.map((item) => (
-            <motion.article key={item.id} variants={fadeUp} className="flex flex-col " aria-labelledby={`produk-title-${item.id}`}>
-              {/* Gambar produk */}
-              <div className="relative rounded-t-[50px] w-full aspect-square overflow-hidden">
-                <Image src={item.image} alt={item.title} fill className="object-cover" />
-              </div>
-
-              {/* Title dengan background */}
-              <div className="relative -mt-6 z-10">
-                <div className="relative flex items-center justify-center">
-                  <Image src="/assets/ornament-card-produk.png" alt="title background" width={500} height={80} className="w-full h-[60px] md:h-[80px] object-cover" />
-                  <h3 id={`produk-title-${item.id}`} className="absolute text-white font-bruliafont text-4xl uppercase tracking-wide">
-                    {item.title}
-                  </h3>
+        {/* List Produk */}
+        <div className="pt-12">
+          {/* 🖥️ Desktop (≥1024px) */}
+          <motion.div
+            variants={staggerContainer}
+            initial="hidden"
+            animate={controls}
+            className="hidden lg:grid grid-cols-3 gap-10 xl:pr-[280px]"
+          >
+            {products.map((item) => (
+              <motion.article
+                key={item.id}
+                variants={fadeUp}
+                className="flex flex-col"
+                aria-labelledby={`produk-title-${item.id}`}
+              >
+                {/* Gambar produk */}
+                <div className="relative rounded-t-[50px] w-full aspect-square overflow-hidden">
+                  <Image
+                    src={item.image}
+                    alt={item.title}
+                    fill
+                    className="object-cover"
+                  />
                 </div>
-              </div>
 
-              {/* Summary */}
-              <div className="mt-4">
-                <p className="text-primary text-2xl leading-[29px] mb-4">{item.summary}</p>
-              </div>
-            </motion.article>
-          ))}
-        </motion.div>
+                {/* Title background */}
+                <div className="relative -mt-6 z-10">
+                  <div className="relative flex items-center justify-center">
+                    <Image
+                      src="/assets/ornament-card-produk.png"
+                      alt="title background"
+                      width={500}
+                      height={80}
+                      className="w-full h-[60px] md:h-[80px] object-cover"
+                    />
+                    <h3
+                      id={`produk-title-${item.id}`}
+                      className="absolute text-white font-bruliafont text-4xl uppercase tracking-wide"
+                    >
+                      {item.title}
+                    </h3>
+                  </div>
+                </div>
+
+                {/* Summary */}
+                <div className="mt-4">
+                  <p className="text-primary text-2xl leading-[29px] mb-4">
+                    {item.summary}
+                  </p>
+                </div>
+              </motion.article>
+            ))}
+          </motion.div>
+
+          {/* 📱 Mobile & Tablet (<1024px) */}
+          <div className="block lg:hidden overflow-hidden cursor-grab active:cursor-grabbing -mx-6">
+            <motion.div
+              ref={containerRef}
+              drag="x"
+              dragConstraints={{ right: 0, left: -width }}
+              dragElastic={0.25}
+              className="flex space-x-4"
+            >
+              {products.map((item) => (
+                <motion.article
+                  key={item.id}
+                  whileTap={{ scale: 0.97 }}
+                  className="w-[225px] sm:w-[290px] flex-shrink-0 flex flex-col ml-6"
+                  aria-labelledby={`produk-title-${item.id}`}
+                >
+                  {/* Gambar produk */}
+                  <div className="relative rounded-t-[40px] w-full aspect-square overflow-hidden">
+                    <Image
+                      src={item.image}
+                      alt={item.title}
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+
+                  {/* Title background */}
+                  <div className="relative -mt-6 z-10">
+                    <div className="relative flex items-center justify-center">
+                      <Image
+                        src="/assets/ornament-card-produk.png"
+                        alt="title background"
+                        width={500}
+                        height={80}
+                        className="w-full h-[60px] object-cover"
+                      />
+                      <h3
+                        id={`produk-title-${item.id}`}
+                        className="absolute text-white font-bruliafont text-3xl uppercase tracking-wide"
+                      >
+                        {item.title}
+                      </h3>
+                    </div>
+                  </div>
+
+                  {/* Summary */}
+                  <div className="mt-4">
+                    <p className="text-primary text-lg sm:text-xl leading-[120%] sm:leading-[26px] mb-4">
+                      {item.summary}
+                    </p>
+                  </div>
+                </motion.article>
+              ))}
+            </motion.div>
+          </div>
+        </div>
       </div>
 
       {/* Tombol Selengkapnya */}
@@ -135,8 +271,10 @@ export default function ProdukKolaborasi() {
         animate={controls}
         className="container mx-auto px-6"
       >
-        <div className="flex justify-start mt-20">
-          <button className="bg-[#386366] text-white text-2xl font-bruliafont px-6 py-3 rounded-lg hover:bg-[#7b91c8] transition">Selengkapnya</button>
+        <div className="flex justify-start mt-8 sm:mt-20">
+          <button className="bg-[#386366] text-white text-2xl font-bruliafont px-6 py-3 rounded-lg hover:bg-[#7b91c8] transition">
+            Selengkapnya
+          </button>
         </div>
       </motion.div>
     </section>

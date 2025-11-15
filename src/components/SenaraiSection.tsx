@@ -251,7 +251,7 @@ export default function SenaraiSection({
       </div>
 
       {/* ====== MOBILE (<768px) ====== */}
-      <div className="lg:hidden flex flex-col items-center px-6 text-center relative overflow-hidden">
+      <div className="lg:hidden flex flex-col items-center px-3 sm:px-6 text-center relative overflow-hidden">
         {/* Ornamen Oval Kanan (belakang Senarai-board) */}
         <motion.div
           initial={{ x: 80, opacity: 0 }}

@@ -131,7 +131,7 @@ export default function AgendaSection() {
         />
       </motion.div>
 
-      <div className="container mx-auto px-6 relative z-10">
+      <div className="container mx-auto px-3 sm:px-6 relative z-10">
         {/* Header */}
         <div className="flex flex-col lg:flex-row justify-between items-start mb-9 sm:mb-18">
           {/* Kiri */}

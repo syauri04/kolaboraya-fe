@@ -135,7 +135,7 @@ export default function ProdukKolaborasi() {
         />
       </motion.div>
 
-      <div className="relative container mx-auto grid grid-cols-1 px-6 z-10">
+      <div className="relative container mx-auto grid grid-cols-1 px-3 sm:px-6 z-10">
         {/* Title kiri */}
         <motion.div
           variants={fadeUp}

@@ -77,7 +77,7 @@ const TentangSection: React.FC<TentangSectionProps> = ({
       style={{ backgroundColor: bgColor }}
     >
       <motion.div
-        className="container mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-10 relative z-10"
+        className="container mx-auto px-3 sm:px-6 grid grid-cols-1 lg:grid-cols-2 gap-10 relative z-10"
         variants={containerVariants}
         initial="hidden"
         animate={inView ? "visible" : "hidden"}

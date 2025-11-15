@@ -29,7 +29,7 @@ export default function ProdukKolaborasi() {
         ref={ref}
         className="relative bg-[#729E81]  h-auto lg:h-[668px] xl:h-[715px] flex flex-col lg:flex-row items-start overflow-hidden mt-[85px]"
       >
-        <div className="container mx-auto px-6  relative z-10">
+        <div className="container mx-auto px-3 sm:px-6  relative z-10">
           {/* Text Content di bawah kiri */}
           <div className="max-w-[466px] text-primary">
             <motion.h2

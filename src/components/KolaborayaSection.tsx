@@ -78,7 +78,7 @@ export default function KolaborayaSection() {
         transition={{ duration: 1.2, ease: "easeOut", delay: 0.8 }}
         className="container mx-auto px-6 sm:pt-8 relative z-10 "
       >
-        <div className="bg-white rounded-t-[25px] sm:rounded-t-[60px] px-6 py-12 text-center shadow-lg">
+        <div className="bg-white rounded-t-[25px] sm:rounded-t-[60px] px-3 sm:px-6 py-12 text-center shadow-lg">
           <p className="text-gray-700 text-lg sm:text-2xl leading-[22px] sm:leading-relaxed max-w-6xl mx-auto">
             Kolaboraya menghubungkan penggerak perubahan di level tapak,
             organisasi, dan individu dalam satu ekosistem yang vibrant,

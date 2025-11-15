@@ -39,7 +39,7 @@ export default function BlogSenarai({
   const currentPosts = otherPosts.slice(startIndex, startIndex + postsPerPage);
 
   return (
-    <section className="container mx-auto px-6 py-14 md:py-20">
+    <section className="container mx-auto px-3 sm:px-6 py-14 md:py-20">
       {/* 🌟 Featured Blog */}
       {featuredPost && (
         <div className="grid grid-cols-1  lg:grid-cols-2 gap-10 mb-18 sm:mb-24 items-center">

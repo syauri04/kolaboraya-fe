@@ -82,7 +82,7 @@ export default function SenaraiDetailPage() {
   const data = sampleData;
 
   return (
-    <div className="max-w-5xl mx-auto py-10 px-6 mt-[85px]">
+    <div className="max-w-5xl mx-auto py-10 px-3 sm:px-6 mt-[85px]">
       {/* Breadcrumb */}
       <div className="text-[#5C5C5C] text-xl sm:text-2xl font-bruliafont mb-10">
         <span>Senarai Cerita</span> <span className="mx-1">&gt;</span>

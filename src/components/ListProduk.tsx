@@ -100,7 +100,7 @@ export default function ListProduk() {
   };
 
   return (
-    <section className="container mx-auto py-14 md:py-20 px-6 bg-[#FFFBE9]">
+    <section className="container mx-auto py-14 md:py-20 px-3 sm:px-6 bg-[#FFFBE9]">
       {/* Filter Categories */}
       <div className="flex flex-wrap justify-start md:justify-center gap-3 mb-8 md:mb-20">
         {categories.map((cat) => (

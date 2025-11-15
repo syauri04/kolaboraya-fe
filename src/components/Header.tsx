@@ -39,29 +39,53 @@ export default function Header() {
   return (
     <>
       {/* HEADER BAR */}
-      <motion.header initial={{ y: 0 }} animate={{ y: show ? 0 : -100 }} transition={{ duration: 0.3, ease: "easeInOut" }} className="fixed top-0 left-0 w-full z-50 bg-[#386366] text-white shadow-md">
-        <div className="container mx-auto flex items-center justify-between px-6 py-3">
+      <motion.header
+        initial={{ y: 0 }}
+        animate={{ y: show ? 0 : -100 }}
+        transition={{ duration: 0.3, ease: "easeInOut" }}
+        className="fixed top-0 left-0 w-full z-50 bg-[#386366] text-white shadow-md"
+      >
+        <div className="container mx-auto flex items-center justify-between px-3 sm:px-6 py-3">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2">
-            <Image src="/assets/logo.png" alt="Kolaboraya" width={181} height={72} priority />
+            <Image
+              src="/assets/logo.png"
+              alt="Kolaboraya"
+              width={181}
+              height={72}
+              priority
+            />
           </Link>
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center gap-6 font-bold text-lg">
             {menus.map((menu) => (
-              <Link key={menu.href} href={menu.href} className={`hover:text-gray-200 transition ${pathname === menu.href ? "text-[#EDB133]" : ""}`}>
+              <Link
+                key={menu.href}
+                href={menu.href}
+                className={`hover:text-gray-200 transition ${
+                  pathname === menu.href ? "text-[#EDB133]" : ""
+                }`}
+              >
                 {menu.name}
               </Link>
             ))}
           </nav>
 
           {/* Desktop Button */}
-          <Link href="/pasar-kolaboraya" className="hidden lg:block ml-6 bg-[#6E87A8] text-white font-bold text-lg px-5 py-2 rounded-[10px] hover:bg-[#7b91c8] transition">
+          <Link
+            href="/pasar-kolaboraya"
+            className="hidden lg:block ml-6 bg-[#6E87A8] text-white font-bold text-lg px-5 py-2 rounded-[10px] hover:bg-[#7b91c8] transition"
+          >
             Pasar Kolaboraya
           </Link>
 
           {/* Mobile Hamburger Button */}
-          <button className="lg:hidden p-2" onClick={() => setIsOpen(!isOpen)} aria-label="Toggle menu">
+          <button
+            className="lg:hidden p-2"
+            onClick={() => setIsOpen(!isOpen)}
+            aria-label="Toggle menu"
+          >
             {isOpen ? <X size={30} /> : <Menu size={30} />}
           </button>
         </div>
@@ -82,14 +106,20 @@ export default function Header() {
               <Link
                 key={menu.href}
                 href={menu.href}
-                className={`transition hover:text-[#EDB133] ${pathname === menu.href ? "text-[#EDB133]" : ""}`}
+                className={`transition hover:text-[#EDB133] ${
+                  pathname === menu.href ? "text-[#EDB133]" : ""
+                }`}
                 onClick={() => setIsOpen(false)} // tutup menu setelah klik
               >
                 {menu.name}
               </Link>
             ))}
 
-            <Link href="/pasar-kolaboraya" className="bg-[#6E87A8] text-white font-bold text-lg px-6 py-3 rounded-[10px] hover:bg-[#7b91c8] transition" onClick={() => setIsOpen(false)}>
+            <Link
+              href="/pasar-kolaboraya"
+              className="bg-[#6E87A8] text-white font-bold text-lg px-6 py-3 rounded-[10px] hover:bg-[#7b91c8] transition"
+              onClick={() => setIsOpen(false)}
+            >
               Pasar Kolaboraya
             </Link>
           </motion.div>

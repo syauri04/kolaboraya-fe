@@ -177,7 +177,7 @@ export default function Kolaborasi() {
       {/* ======================= */}
       {/* MOBILE VERSION */}
       {/* ======================= */}
-      <div className="block lg:hidden relative z-10 px-6 sm:pt-10">
+      <div className="block lg:hidden relative z-10 px-3 sm:px-6 sm:pt-10">
         <div className="flex flex-col">
           {/* Foto kiri */}
           <motion.div

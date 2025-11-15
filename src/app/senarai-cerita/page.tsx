@@ -30,7 +30,7 @@ export default function SenaraiCerita() {
         ref={ref}
         className="relative bg-[#F0ACCF] h-auto lg:h-[668px] xl:h-[715px] flex flex-col lg:flex-row items-start xl:items-center overflow-hidden mt-[85px]"
       >
-        <div className="container mx-auto px-6  grid grid-cols-1 lg:grid-cols-2 gap-10 items-center relative z-10">
+        <div className="container mx-auto px-3 sm:px-6  grid grid-cols-1 lg:grid-cols-2 gap-10 items-center relative z-10">
           {/* Text Content */}
           <div className="max-w-[466px] text-primary">
             <motion.h2

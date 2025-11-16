@@ -49,13 +49,13 @@ export default function ProdukKolaborasi() {
           initial={{ opacity: 0, y: 200 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
-          className="relative lg:absolute w-full h-[360px] md:h-[425px] lg:h-[570px] xl:h-[750px] bottom-0"
+          className="relative lg:absolute w-full h-[360px] md:h-[425px] lg:h-[415px] xl:h-[550px] bottom-0 sm:-bottom-13 lg:bottom-0"
         >
           <Image
-            src="/assets/bg-produk.png"
+            src="/assets/bg-produk-2.png"
             alt="Ornament"
             fill
-            className="object-cover sm:object-contain object-center sm:object-right"
+            className="object-cover sm:object-contain object-left sm:object-right"
           />
         </motion.div>
 

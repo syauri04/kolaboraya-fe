@@ -50,13 +50,13 @@ export default function SenaraiCerita() {
           initial={{ opacity: 0, x: 200 }}
           animate={inView ? { opacity: 1, x: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
-          className="relative lg:absolute w-full h-[360px] md:h-[425px] lg:h-[530px] xl:h-[800px] bottom-0 "
+          className="relative lg:absolute w-full h-[360px] md:h-[425px] lg:h-[530px] xl:h-[800px] -bottom-5 sm:bottom-0 "
         >
           <Image
-            src="/assets/Senarai-cerita-bg.png" // ganti dengan path ornament image kamu
+            src="/assets/Senarai-cerita-bg-2.png" // ganti dengan path ornament image kamu
             alt="Ornament"
             fill
-            className="object-cover sm:object-contain object-center sm:object-right"
+            className="object-cover sm:object-contain object-center sm:object-right "
           />
         </motion.div>
       </section>

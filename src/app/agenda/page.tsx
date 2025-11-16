@@ -52,7 +52,7 @@ export default function Agenda() {
           className="relative lg:absolute w-full h-[360px] md:h-[425px] lg:h-[530px] xl:h-[800px] bottom-0 "
         >
           <Image
-            src="/assets/bg-agenda.png" // ganti dengan path ornament image kamu
+            src="/assets/bg-agenda-2.png" // ganti dengan path ornament image kamu
             alt="Ornament"
             fill
             className="object-cover sm:object-contain object-center sm:object-right"

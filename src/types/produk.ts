@@ -13,4 +13,5 @@ export interface ProdukItem {
   publishedAt: string;
   image: StrapiMedia;
   Link: string;
+  category_produk: Category | null;
 }

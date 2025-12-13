@@ -1,3 +1,4 @@
+import React from "react";
 import Image from "next/image";
 import { fetchSenaraiBySlug } from "@/services/senarai";
 import { SenaraiItem, RichTextNode } from "@/types/senarai";
@@ -44,12 +45,13 @@ function formatDate(dateStr: string) {
 // PAGE
 // ============================
 
-type PageProps = {
-  params: { slug: string };
-};
-
-export default async function SenaraiDetailPage({ params }: PageProps) {
-  const data: SenaraiItem | null = await fetchSenaraiBySlug(params.slug);
+export default async function SenaraiDetailPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<React.ReactElement> {
+  const { slug } = await params;
+  const data: SenaraiItem | null = await fetchSenaraiBySlug(slug);
 
   if (!data) {
     return (
@@ -114,7 +116,11 @@ export default async function SenaraiDetailPage({ params }: PageProps) {
               return (
                 <div key={i} className="my-6">
                   <Image
-                    src={block.url}
+                    src={
+                      block.url.startsWith("http")
+                        ? block.url
+                        : `${process.env.NEXT_PUBLIC_API_BASE_URL}${block.url}`
+                    }
                     alt={block.alt ?? "image"}
                     width={1200}
                     height={800}

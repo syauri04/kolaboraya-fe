@@ -4,28 +4,11 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 
-const logos = [
-  "/assets/logo-1.png",
-  "/assets/logo-2.png",
-  "/assets/logo-3.png",
-  "/assets/logo-4.png",
-  "/assets/logo-5.png",
-  "/assets/logo-6.png",
-  "/assets/logo-7.png",
-  "/assets/logo-8.png",
-  "/assets/logo-9.png",
-  "/assets/logo-10.png",
-  "/assets/logo-11.png",
-  "/assets/logo-12.png",
-  "/assets/logo-13.png",
-  "/assets/logo-14.png",
-  "/assets/logo-15.png",
-  "/assets/logo-16.png",
-  "/assets/logo-17.png",
-  "/assets/logo-18.png",
-];
+interface KolaboratorSectionProps {
+  logos: string[]; // URL full dari Strapi (sudah diproses)
+}
 
-export default function KolaboratorSection() {
+export default function KolaboratorSection({ logos }: KolaboratorSectionProps) {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.2 });
 
   return (
@@ -78,7 +61,7 @@ export default function KolaboratorSection() {
         </h2>
 
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-8 place-items-center">
-          {logos.map((logo, index) => (
+          {logos?.map((logo, index) => (
             <div key={index} className="flex justify-center items-center">
               <Image
                 src={logo}

@@ -10,9 +10,10 @@ type HeroProps = {
   summary: string;
   title?: string;
   page?: string;
+  images: string[];
 };
 
-export default function Hero({ title, summary, page }: HeroProps) {
+export default function Hero({ title, summary, page, images }: HeroProps) {
   const { ref: logoRef, inView: logoInView } = useInView({ triggerOnce: true });
 
   // Tentukan properti berdasarkan halaman
@@ -44,25 +45,29 @@ export default function Hero({ title, summary, page }: HeroProps) {
           initial={{ y: 200, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 1, ease: "easeOut", delay: 0 }}
-          className="w-1/2 lg:w-1/4 bg-[url('/assets/bg1.png')] bg-cover bg-center"
+          className="w-1/2 lg:w-1/4 bg-cover bg-center"
+          style={{ backgroundImage: `url(${images[0]})` }}
         />
         <motion.div
           initial={{ y: -200, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
-          className="w-1/2 lg:w-1/4 bg-[url('/assets/bg2.png')] bg-cover bg-center"
+          className="w-1/2 lg:w-1/4 bg-cover bg-center"
+          style={{ backgroundImage: `url(${images[1]})` }}
         />
         <motion.div
           initial={{ y: 200, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 1, ease: "easeOut", delay: 0.4 }}
-          className="w-1/2 lg:w-1/4 bg-[url('/assets/bg3.png')] bg-cover bg-center"
+          className="w-1/2 lg:w-1/4  bg-cover bg-center"
+          style={{ backgroundImage: `url(${images[2]})` }}
         />
         <motion.div
           initial={{ y: -200, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 1, ease: "easeOut", delay: 0.6 }}
-          className="w-1/2 lg:w-1/4 bg-[url('/assets/bg4.png')] bg-cover bg-center"
+          className="w-1/2 lg:w-1/4  bg-cover bg-center"
+          style={{ backgroundImage: `url(${images[3]})` }}
         />
         <div className="absolute inset-0 bg-black/20" />
       </div>

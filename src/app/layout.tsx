@@ -18,7 +18,8 @@ const bruliaFont = localFont({
 
 export const metadata: Metadata = {
   title: "Kolaboraya",
-  description: "adalah platform sekaligus pendekatan gerakan kolektif yang hadir sebagai respons terhadap berbagai krisis global yang kita hadapi, seperti krisis iklim, krisis pangan, krisis air, krisis energi, dan krisis demokrasi",
+  description:
+    "adalah platform sekaligus pendekatan gerakan kolektif yang hadir sebagai respons terhadap berbagai krisis global yang kita hadapi, seperti krisis iklim, krisis pangan, krisis air, krisis energi, dan krisis demokrasi",
 };
 
 export default function RootLayout({
@@ -28,7 +29,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inclusiveSans.variable} ${bruliaFont.variable} antialiased`}>
+      <body
+        className={`${inclusiveSans.variable} ${bruliaFont.variable} antialiased`}
+        suppressHydrationWarning={true}
+      >
         <Header />
         {children}
         <Footer />

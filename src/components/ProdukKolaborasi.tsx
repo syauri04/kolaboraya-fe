@@ -4,8 +4,14 @@ import Image from "next/image";
 import { motion, useAnimation, Variants } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
+import { Category } from "@/types/category";
 
-export default function ProdukKolaborasi() {
+type CategoryProps = {
+  category: Category[];
+};
+
+export default function ProdukKolaborasi({ category }: CategoryProps) {
   const products = [
     {
       id: 1,
@@ -157,18 +163,22 @@ export default function ProdukKolaborasi() {
             animate={controls}
             className="hidden lg:grid grid-cols-3 gap-10 xl:pr-[280px]"
           >
-            {products.map((item) => (
+            {category?.map((cat) => (
               <motion.article
-                key={item.id}
+                key={cat.id}
                 variants={fadeUp}
                 className="flex flex-col"
-                aria-labelledby={`produk-title-${item.id}`}
+                aria-labelledby={`produk-title-${cat.id}`}
               >
                 {/* Gambar produk */}
                 <div className="relative rounded-t-[50px] w-full aspect-square overflow-hidden">
                   <Image
-                    src={item.image}
-                    alt={item.title}
+                    src={
+                      cat.image?.url
+                        ? `${process.env.NEXT_PUBLIC_API_BASE_URL}${cat.image.url}`
+                        : "/assets/placeholder.png"
+                    }
+                    alt={cat.Category}
                     fill
                     className="object-cover"
                   />
@@ -185,20 +195,20 @@ export default function ProdukKolaborasi() {
                       className="w-full h-[60px] md:h-[80px] object-cover"
                     />
                     <h3
-                      id={`produk-title-${item.id}`}
+                      id={`produk-title-${cat.id}`}
                       className="absolute text-white font-bruliafont text-4xl uppercase tracking-wide"
                     >
-                      {item.title}
+                      {cat.Category}
                     </h3>
                   </div>
                 </div>
 
                 {/* Summary */}
-                <div className="mt-4">
+                {/* <div className="mt-4">
                   <p className="text-primary text-2xl leading-[29px] mb-4">
                     {item.summary}
                   </p>
-                </div>
+                </div> */}
               </motion.article>
             ))}
           </motion.div>
@@ -212,18 +222,22 @@ export default function ProdukKolaborasi() {
               dragElastic={0.25}
               className="flex space-x-4"
             >
-              {products.map((item) => (
+              {category?.map((cat) => (
                 <motion.article
-                  key={item.id}
+                  key={cat.id}
                   whileTap={{ scale: 0.97 }}
-                  className="w-[225px] sm:w-[290px] flex-shrink-0 flex flex-col ml-6"
-                  aria-labelledby={`produk-title-${item.id}`}
+                  className="w-[310px] sm:w-[290px] flex-shrink-0 flex flex-col ml-6"
+                  aria-labelledby={`produk-title-${cat.id}`}
                 >
                   {/* Gambar produk */}
                   <div className="relative rounded-t-[40px] w-full aspect-square overflow-hidden">
                     <Image
-                      src={item.image}
-                      alt={item.title}
+                      src={
+                        cat.image?.url
+                          ? `${process.env.NEXT_PUBLIC_API_BASE_URL}${cat.image.url}`
+                          : "/assets/placeholder.png"
+                      }
+                      alt={cat.Category}
                       fill
                       className="object-cover"
                     />
@@ -240,20 +254,20 @@ export default function ProdukKolaborasi() {
                         className="w-full h-[60px] object-cover"
                       />
                       <h3
-                        id={`produk-title-${item.id}`}
+                        id={`produk-title-${cat.id}`}
                         className="absolute text-white font-bruliafont text-3xl uppercase tracking-wide"
                       >
-                        {item.title}
+                        {cat.Category}
                       </h3>
                     </div>
                   </div>
 
                   {/* Summary */}
-                  <div className="mt-4">
+                  {/* <div className="mt-4">
                     <p className="text-primary text-lg sm:text-xl leading-[120%] sm:leading-[26px] mb-4">
                       {item.summary}
                     </p>
-                  </div>
+                  </div> */}
                 </motion.article>
               ))}
             </motion.div>
@@ -272,9 +286,12 @@ export default function ProdukKolaborasi() {
         className="container mx-auto px-6"
       >
         <div className="flex justify-start mt-8 sm:mt-20">
-          <button className="bg-[#386366] text-white text-2xl font-bruliafont px-6 py-3 rounded-lg hover:bg-[#7b91c8] transition">
+          <Link
+            href="/produk-kolaborasi"
+            className="bg-[#386366] cursor-pointer text-white text-2xl font-bruliafont px-6 py-3 rounded-lg hover:bg-[#7b91c8] transition"
+          >
             Selengkapnya
-          </button>
+          </Link>
         </div>
       </motion.div>
     </section>

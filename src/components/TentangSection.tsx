@@ -12,7 +12,12 @@ type TentangSectionProps = {
   titleColor?: string;
   summary: string; // HTML string
   summaryColor?: string;
-  image: string;
+  image: {
+    url: string;
+    alternativeText: string | null;
+    width: number;
+    height: number;
+  } | null;
 };
 
 const TentangSection: React.FC<TentangSectionProps> = ({
@@ -112,8 +117,8 @@ const TentangSection: React.FC<TentangSectionProps> = ({
         animate={inView ? "visible" : "hidden"}
       >
         <Image
-          src={image}
-          alt="Ornament"
+          src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${image?.url}`}
+          alt={image?.alternativeText ?? "Ornament"}
           width={1024}
           height={700}
           className="object-contain w-[1024px] lg:w-[700px] xl:w-[1024px]"

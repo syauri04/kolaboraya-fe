@@ -1,85 +1,66 @@
-// FILE: src/app/senarai/[slug]/page.tsx
-// FINAL — 1 FILE VERSION (TYPES + STATIC DATA + PAGE COMPONENT)
-
 import Image from "next/image";
+import { fetchSenaraiBySlug } from "@/services/senarai";
+import { SenaraiItem, RichTextNode } from "@/types/senarai";
 
 // ============================
-// TYPES (INLINE IN ONE FILE)
+// HELPERS
 // ============================
-export interface SenaraiImage {
-  url: string;
-  alt?: string;
-  caption?: string;
+
+// Convert Strapi rich nodes → FE blocks
+function mapRichContent(nodes: RichTextNode[]) {
+  const blocks: Array<
+    | { type: "text"; value: string }
+    | { type: "image"; url: string; alt?: string; caption?: string }
+  > = [];
+
+  nodes.forEach((node) => {
+    if (node.type === "paragraph" && node.children) {
+      const text = node.children.map((c) => c.text).join("");
+      if (text.trim()) blocks.push({ type: "text", value: text });
+    }
+
+    if (node.type === "image" && node.image) {
+      blocks.push({
+        type: "image",
+        url: node.image.url,
+        alt: node.image.alternativeText ?? "",
+        caption: node.image.caption ?? "",
+      });
+    }
+  });
+
+  return blocks;
 }
 
-export interface SenaraiTextBlock {
-  type: "text";
-  value: string;
-}
-
-export interface SenaraiImageBlock {
-  type: "image";
-  url: string;
-  alt?: string;
-  caption?: string;
-}
-
-export type SenaraiContentBlock = SenaraiTextBlock | SenaraiImageBlock;
-
-export interface SenaraiDetail {
-  title: string;
-  date: string;
-  cover: {
-    url: string;
-  } | null;
-  content: SenaraiContentBlock[];
+function formatDate(dateStr: string) {
+  return new Date(dateStr).toLocaleDateString("id-ID", {
+    day: "2-digit",
+    month: "long",
+    year: "numeric",
+  });
 }
 
 // ============================
-// STATIC SAMPLE DATA (NO API)
+// PAGE
 // ============================
-const sampleData: SenaraiDetail = {
-  title: "Tentang Ruang dan Perlawanan",
-  date: "19 Maret 2024",
 
-  cover: {
-    url: "/assets/blogfeatured.png",
-  },
-
-  content: [
-    {
-      type: "text",
-      value:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras fermentum eleifend orci eu mattis. Nulla nec malesuada turpis tristique sed orci. Morbi vitae tincidunt lacus, eget commodo elit. Vivamus eget tortor eu mi dapibus posuere.",
-    },
-
-    {
-      type: "image",
-      url: "/assets/blog1.png",
-      alt: "sample-1",
-      caption: "Suspendisse hendrerit felis",
-    },
-
-    {
-      type: "text",
-      value:
-        "Suspendisse hendrerit felis vitae urna tincidunt. Integer egestas orci ac pellentesque tempus. Nam tincidunt est sed sapien bibendum, vitae viverra ipsum feugiat.",
-    },
-
-    {
-      type: "image",
-      url: "/assets/blog2.png",
-      alt: "sample-2",
-      caption: "Lorem ipsum dolor sit amet consectetur",
-    },
-  ],
+type PageProps = {
+  params: { slug: string };
 };
 
-// ============================
-// PAGE COMPONENT
-// ============================
-export default function SenaraiDetailPage() {
-  const data = sampleData;
+export default async function SenaraiDetailPage({ params }: PageProps) {
+  const data: SenaraiItem | null = await fetchSenaraiBySlug(params.slug);
+
+  if (!data) {
+    return (
+      <div className="max-w-5xl mx-auto py-20">
+        <h1 className="text-3xl font-bold">Artikel tidak ditemukan</h1>
+      </div>
+    );
+  }
+
+  const blocks = mapRichContent(data.content);
+  const formattedDate = formatDate(data.publishedAt);
 
   return (
     <div className="max-w-5xl mx-auto py-10 px-3 sm:px-6 mt-[85px]">
@@ -90,9 +71,13 @@ export default function SenaraiDetailPage() {
       </div>
 
       {/* Cover Image */}
-      {data.cover && (
+      {data.image?.url && (
         <Image
-          src={data.cover.url}
+          src={
+            data.image.url
+              ? `${process.env.NEXT_PUBLIC_API_BASE_URL}${data.image.url}`
+              : "/assets/placeholder.png"
+          }
           alt={data.title}
           width={1600}
           height={900}
@@ -108,12 +93,12 @@ export default function SenaraiDetailPage() {
 
         {/* Date */}
         <p className="text-base sm:text-[24px] text-[#5C5C5C] font-bruliafont mb-8">
-          {data.date}
+          {formattedDate}
         </p>
 
         {/* Rich Content */}
-        <div className="prose max-w-none font-inclusive ">
-          {data.content.map((block, i) => {
+        <div className="prose max-w-none font-inclusive">
+          {blocks.map((block, i) => {
             if (block.type === "text") {
               return (
                 <p
@@ -130,7 +115,7 @@ export default function SenaraiDetailPage() {
                 <div key={i} className="my-6">
                   <Image
                     src={block.url}
-                    alt={block.alt || "image"}
+                    alt={block.alt ?? "image"}
                     width={1200}
                     height={800}
                     className="rounded-[12px] w-full object-cover"

@@ -4,7 +4,17 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 
-export default function Kolaborasi() {
+export type KolaborasiData = {
+  summary: string;
+  images: string[];
+};
+
+type KolaborasiProps = {
+  data: KolaborasiData;
+};
+
+export default function Kolaborasi({ data }: KolaborasiProps) {
+  const { summary, images } = data;
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.3 });
 
   return (
@@ -35,7 +45,7 @@ export default function Kolaborasi() {
             <div className="bg-white w-[435px] px-4 pt-4 pb-16 shadow-xl">
               <div className="relative aspect-[396.72/244.5] w-full">
                 <Image
-                  src="/assets/kolaborasi-foto-1new.jpg"
+                  src={images[0]}
                   alt="Foto Kolaborasi"
                   fill
                   className="object-cover"
@@ -59,7 +69,7 @@ export default function Kolaborasi() {
             <div className="bg-white w-[435px] px-4 pt-4 pb-16 shadow-xl">
               <div className="relative aspect-[396.72/244.5] w-full">
                 <Image
-                  src="/assets/kolaborasi-foto-3new.jpg"
+                  src={images[2]}
                   alt="Foto Raya"
                   fill
                   className="object-cover"
@@ -83,7 +93,7 @@ export default function Kolaborasi() {
             <div className="bg-white w-[435px] px-4 pt-4 pb-16 shadow-xl">
               <div className="relative aspect-[396.72/244.5] w-full">
                 <Image
-                  src="/assets/kolaborasi-foto-2.jpg"
+                  src={images[1]}
                   alt="Foto Eksperimentasi"
                   fill
                   className="object-cover"
@@ -167,9 +177,7 @@ export default function Kolaborasi() {
           className="absolute -bottom-[410px] xl-bottom-[350px] right-6 2xl:right-0 max-w-md xl:max-w-sm z-20"
         >
           <p className="text-[#FFFBE9] text-2xl leading-[29px] text-right">
-            Dijalankan atas tiga pilar; kolaborasi, eksperimentasi, dan raya,
-            Kolaboraya percaya perubahan sistemik lahir dari kesediaan melebur
-            sekat, melepas paham, menjajal gagasan baru, dan bergerak bersama.
+            {summary}
           </p>
         </motion.div>
       </div>
@@ -189,7 +197,7 @@ export default function Kolaborasi() {
             <div className="bg-white w-[60vw] sm:w-[85vw] max-w-[430px] px-3 pt-3 pb-8 shadow-lg">
               <div className="relative aspect-[396.72/244.5] w-full">
                 <Image
-                  src="/assets/kolaborasi-foto-1new.jpg"
+                  src={images[0]}
                   alt="Foto Kolaborasi"
                   fill
                   className="object-cover"
@@ -208,7 +216,7 @@ export default function Kolaborasi() {
             <div className="bg-white w-[60vw] sm:w-[85vw] max-w-[430px] px-3 pt-3 pb-8 shadow-lg">
               <div className="relative aspect-[396.72/244.5] w-full">
                 <Image
-                  src="/assets/kolaborasi-foto-3new.jpg"
+                  src={images[2]}
                   alt="Foto Raya"
                   fill
                   className="object-cover"
@@ -227,7 +235,7 @@ export default function Kolaborasi() {
             <div className="bg-white w-[60vw] sm:w-[85vw] max-w-[430px] px-3 pt-3 pb-8 shadow-lg">
               <div className="relative aspect-[396.72/244.5] w-full">
                 <Image
-                  src="/assets/kolaborasi-foto-2.jpg"
+                  src={images[1]}
                   alt="Foto Eksperimentasi"
                   fill
                   className="object-cover"
@@ -300,9 +308,7 @@ export default function Kolaborasi() {
           className="relative mt-5 sm:mt-0 sm:absolute bottom-0 sm:bottom-8 -right-7 xs:-right-20 sm:right-8 max-w-[290px] sm:max-w-sm z-20"
         >
           <p className="text-[#FFFBE9] text-xl leading-[24px] text-right">
-            Dijalankan atas tiga pilar; kolaborasi, eksperimentasi, dan raya,
-            Kolaboraya percaya perubahan sistemik lahir dari kesediaan melebur
-            sekat, melepas paham, menjajal gagasan baru, dan bergerak bersama.
+            {summary}
           </p>
         </motion.div>
       </div>

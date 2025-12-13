@@ -10,6 +10,7 @@ type SenaraiSectionProps = {
   showButton?: boolean;
   buttonLabel?: string;
   buttonHref?: string;
+  images?: string[];
 };
 
 export default function SenaraiSection({
@@ -17,6 +18,7 @@ export default function SenaraiSection({
   showButton = false,
   buttonLabel = "Selengkapnya",
   buttonHref = "#",
+  images,
 }: SenaraiSectionProps) {
   const { ref, inView } = useInView({
     threshold: 0.3,
@@ -28,6 +30,9 @@ export default function SenaraiSection({
   React.useEffect(() => {
     if (inView) controls.start("visible");
   }, [inView, controls]);
+
+  const img0 = images?.[0] ?? "/assets/Senarai-board.png";
+  const img1 = images?.[1] ?? "/assets/Senarai_image2.png";
 
   return (
     <section
@@ -81,7 +86,7 @@ export default function SenaraiSection({
               className="relative w-[550px] xl:w-[706px] h-[334px] xl:h-[430px] z-10"
             >
               <Image
-                src="/assets/Senarai-board.png"
+                src={img0}
                 alt="Senarai Board"
                 fill
                 className="object-cover"
@@ -186,8 +191,8 @@ export default function SenaraiSection({
             </p>
 
             {showButton && (
-              <a href={buttonHref}>
-                <button className="bg-[#386366] text-white text-2xl font-bruliafont px-4 py-2 rounded-lg hover:bg-[#7b91c8] transition">
+              <a href={buttonHref} className="cursor-pointer">
+                <button className="bg-[#386366] cursor-pointer text-white text-2xl font-bruliafont px-4 py-2 rounded-lg hover:bg-[#7b91c8] transition">
                   {buttonLabel}
                 </button>
               </a>
@@ -215,7 +220,7 @@ export default function SenaraiSection({
               className="relative w-[550px] xl:w-[706px] h-[334px] xl:h-[430px] z-20 -top-10 xl:-top-20 ml-8 "
             >
               <Image
-                src="/assets/Senarai-image2.png"
+                src={img1}
                 alt="Senarai Image"
                 fill
                 className="object-cover"
@@ -326,7 +331,7 @@ export default function SenaraiSection({
           >
             <div className="relative w-[320px] sm:w-[513px] aspect-[513/313]">
               <Image
-                src="/assets/Senarai-board.png"
+                src={img0}
                 alt="Foto kanan atas"
                 fill
                 className="object-cover"
@@ -351,7 +356,7 @@ export default function SenaraiSection({
           >
             <div className="relative w-[320px] sm:w-[513px] aspect-[513/313]">
               <Image
-                src="/assets/Senarai-image2.png"
+                src={img1}
                 alt="Foto kiri bawah"
                 fill
                 className="object-cover "

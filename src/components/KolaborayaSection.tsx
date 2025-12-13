@@ -3,7 +3,11 @@ import { useRef, useEffect, useState } from "react";
 import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 
-export default function KolaborayaSection() {
+type SummaryProps = {
+  summaryCircle: string;
+};
+
+export default function KolaborayaSection({ summaryCircle }: SummaryProps) {
   const controls = useAnimation();
   const controls2 = useAnimation();
   const controls3 = useAnimation();
@@ -80,9 +84,7 @@ export default function KolaborayaSection() {
       >
         <div className="bg-white rounded-t-[25px] sm:rounded-t-[60px] px-3 sm:px-6 py-12 text-center shadow-lg">
           <p className="text-gray-700 text-lg sm:text-2xl leading-[22px] sm:leading-relaxed max-w-6xl mx-auto">
-            Kolaboraya menghubungkan penggerak perubahan di level tapak,
-            organisasi, dan individu dalam satu ekosistem yang vibrant,
-            berdampak, dan saling mendukung.
+            {summaryCircle}
           </p>
         </div>
       </motion.div>

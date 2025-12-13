@@ -22,8 +22,21 @@
   }
 }
 
+html,
+body {
+  overflow-x: hidden;
+}
+
 body {
   background: #fffbe9;
   color: var(--foreground);
   font-family: var(--font-inclusive-sans), sans-serif;
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 10px;
 }

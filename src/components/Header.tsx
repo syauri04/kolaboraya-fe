@@ -73,12 +73,12 @@ export default function Header() {
           </nav>
 
           {/* Desktop Button */}
-          <Link
-            href="/pasar-kolaboraya"
+          <a
+            href="https://pk2025.kolaboraya.id/"
             className="hidden lg:block ml-6 bg-[#6E87A8] text-white font-bold text-lg px-5 py-2 rounded-[10px] hover:bg-[#7b91c8] transition"
           >
             Pasar Kolaboraya
-          </Link>
+          </a>
 
           {/* Mobile Hamburger Button */}
           <button

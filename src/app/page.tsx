@@ -33,7 +33,7 @@ export default async function Home() {
       <Hero summary={heroData.titleHome} images={heroData.images} page="home" />
       <Kolaborasi data={homeKolaborasiData} />
       <KolaborayaSection summaryCircle={homeKolaborasiData.summaryCircle} />
-      <AgendaSection onText={onTextData} agendas={latestAgendas} />
+      {/* <AgendaSection onText={onTextData} agendas={latestAgendas} /> */}
       <SenaraiSection
         text={homeSenaraiData.summarySenarai}
         images={homeSenaraiData.images}

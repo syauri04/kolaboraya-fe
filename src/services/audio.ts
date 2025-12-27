@@ -50,6 +50,8 @@ export async function fetchAudioItems(): Promise<AudioVisualItem[]> {
   params.append("sort", "audio_visual_section.order:asc");
   params.append("sort", "id:asc");
 
+  params.append("pagination[pageSize]", "1000");
+
   return apiGet<AudioVisualItem[]>(`/api/audio-visuals?${params.toString()}`);
 }
 

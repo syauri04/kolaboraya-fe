@@ -27,7 +27,7 @@ export default function BlogSenaraiFour({
       <CardSectionSenarai title={title} summary={summary} />
 
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-12">
-        {posts.slice(0, 4).map((item) => {
+        {posts.map((item) => {
           return (
             <div className="w-full" key={item.id}>
               <Link href={`/senarai-cerita/${item.slug}`}>

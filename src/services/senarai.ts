@@ -8,7 +8,7 @@ export async function fetchSenaraisBySection(
   sectionId: number
 ): Promise<SenaraiResponse["data"]> {
   const res = await fetchFromStrapi<SenaraiResponse>(
-    `/senarai-ceritas?filters[senarai_cerita_section][id][$eq]=${sectionId}&sort=publishedAt:desc&pagination[pageSize]=10&${SENARAI_POPULATE}`
+    `/senarai-ceritas?filters[senarai_cerita_section][id][$eq]=${sectionId}&sort=publishedAt:desc&pagination[pageSize]=1000&${SENARAI_POPULATE}`
   );
 
   return res.data;

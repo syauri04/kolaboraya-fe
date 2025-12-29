@@ -6,20 +6,56 @@ import { SenaraiItem, RichTextNode } from "@/types/senarai";
 // ============================
 // HELPERS
 // ============================
+export interface LinkChild {
+  text: string;
+  type: string;
+}
 
+export interface LinkNodeChild {
+  type: "link";
+  url: string;
+  children?: LinkChild[];
+  target?: string;
+  rel?: string;
+}
 // Convert Strapi rich nodes → FE blocks
-function mapRichContent(nodes: RichTextNode[]) {
+// ============================
+// TYPE GUARD
+// ============================
+
+function isLinkNode(
+  node: { text: string; type: string } | LinkNodeChild
+): node is LinkNodeChild {
+  return node.type === "link" && "url" in node;
+}
+
+// ============================
+// MAP FUNCTION
+// ============================
+
+export function mapRichContent(nodes: RichTextNode[]) {
   const blocks: Array<
     | { type: "text"; value: string }
+    | { type: "link"; url: string; text: string }
     | { type: "image"; url: string; alt?: string; caption?: string }
   > = [];
 
   nodes.forEach((node) => {
+    // paragraph
     if (node.type === "paragraph" && node.children) {
-      const text = node.children.map((c) => c.text).join("");
-      if (text.trim()) blocks.push({ type: "text", value: text });
+      node.children.forEach((child) => {
+        if (child.type === "text" && "text" in child && child.text.trim()) {
+          blocks.push({ type: "text", value: child.text });
+        }
+
+        if (isLinkNode(child)) {
+          const linkText = child.children?.map((c) => c.text).join("") ?? child.url;
+          blocks.push({ type: "link", url: child.url, text: linkText });
+        }
+      });
     }
 
+    // image
     if (node.type === "image" && node.image) {
       blocks.push({
         type: "image",
@@ -32,6 +68,7 @@ function mapRichContent(nodes: RichTextNode[]) {
 
   return blocks;
 }
+
 
 function formatDate(dateStr: string) {
   return new Date(dateStr).toLocaleDateString("id-ID", {
@@ -84,6 +121,7 @@ export default async function SenaraiDetailPage({
           width={1600}
           height={900}
           className="w-full rounded-[18px] mb-12 object-cover"
+          unoptimized
         />
       )}
 
@@ -99,6 +137,7 @@ export default async function SenaraiDetailPage({
         </p>
 
         {/* Rich Content */}
+        
         <div className="prose max-w-none font-inclusive">
           {blocks.map((block, i) => {
             if (block.type === "text") {
@@ -125,6 +164,7 @@ export default async function SenaraiDetailPage({
                     width={1200}
                     height={800}
                     className="rounded-[12px] w-full object-cover"
+                    unoptimized
                   />
                   {block.caption && (
                     <p className="text-sm text-[#5C5C5C] mt-2">
@@ -132,6 +172,16 @@ export default async function SenaraiDetailPage({
                     </p>
                   )}
                 </div>
+              );
+            }
+
+            if (block.type === "link") {
+              return (
+                <p key={i}>
+                  <a href={block.url} target="_blank" rel="noopener noreferrer" className="text-blue-600 underline">
+                    {block.text}
+                  </a>
+                </p>
               );
             }
 

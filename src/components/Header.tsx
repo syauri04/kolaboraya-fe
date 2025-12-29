@@ -31,7 +31,7 @@ export default function Header() {
   // daftar menu
   const menus = [
     { name: "Tentang", href: "/tentang" },
-    { name: "Agenda", href: "/agenda" },
+    // { name: "Agenda", href: "/agenda" },
     { name: "Produk Kolaborasi", href: "/produk-kolaborasi" },
     { name: "Senarai Cerita", href: "/senarai-cerita" },
   ];

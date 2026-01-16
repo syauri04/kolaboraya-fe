@@ -47,11 +47,9 @@ export const ekosistemDummy: EkosistemData[] = [
     },
     gallery: {
       images: [
-        "/assets/gallery-eco-1.jpg",
-        "/assets/gallery-eco-2.jpg",
-        "/assets/gallery-eco-3.jpg",
-        "/assets/gallery-eco-4.jpg",
-        "/assets/gallery-eco-5.jpg",
+        "/assets/g-ekonomi-1.jpg",
+        "/assets/g-ekonomi-2.jpg",
+        "/assets/g-ekonomi-3.jpg",
       ],
     },
   },
@@ -85,11 +83,9 @@ export const ekosistemDummy: EkosistemData[] = [
     },
     gallery: {
       images: [
-        "/assets/gallery-eco-1.jpg",
-        "/assets/gallery-eco-2.jpg",
-        "/assets/gallery-eco-3.jpg",
-        "/assets/gallery-eco-4.jpg",
-        "/assets/gallery-eco-5.jpg",
+        "/assets/g-teknologi-1.jpg",
+        "/assets/g-teknologi-2.jpg",
+        "/assets/g-teknologi-3.jpg",
       ],
     },
   },
@@ -123,11 +119,9 @@ export const ekosistemDummy: EkosistemData[] = [
     },
     gallery: {
       images: [
-        "/assets/gallery-eco-1.jpg",
-        "/assets/gallery-eco-2.jpg",
-        "/assets/gallery-eco-3.jpg",
-        "/assets/gallery-eco-4.jpg",
-        "/assets/gallery-eco-5.jpg",
+        "/assets/g-budaya-1.jpg",
+        "/assets/g-budaya-2.jpg",
+        "/assets/g-budaya-3.jpg",
       ],
     },
   },
@@ -157,11 +151,9 @@ export const ekosistemDummy: EkosistemData[] = [
     },
     gallery: {
       images: [
-        "/assets/gallery-eco-1.jpg",
-        "/assets/gallery-eco-2.jpg",
-        "/assets/gallery-eco-3.jpg",
-        "/assets/gallery-eco-4.jpg",
-        "/assets/gallery-eco-5.jpg",
+        "/assets/g-ekologi-1.jpg",
+        "/assets/g-ekologi-2.jpg",
+        "/assets/g-ekologi-3.jpg",
       ],
     },
   },
@@ -192,11 +184,9 @@ export const ekosistemDummy: EkosistemData[] = [
     },
     gallery: {
       images: [
-        "/assets/gallery-eco-1.jpg",
-        "/assets/gallery-eco-2.jpg",
-        "/assets/gallery-eco-3.jpg",
-        "/assets/gallery-eco-4.jpg",
-        "/assets/gallery-eco-5.jpg",
+        "/assets/g-politik-1.jpg",
+        "/assets/g-politik-2.jpg",
+        "/assets/g-politik-3.jpg",
       ],
     },
   },
@@ -226,11 +216,9 @@ export const ekosistemDummy: EkosistemData[] = [
     },
     gallery: {
       images: [
-        "/assets/gallery-eco-1.jpg",
-        "/assets/gallery-eco-2.jpg",
-        "/assets/gallery-eco-3.jpg",
-        "/assets/gallery-eco-4.jpg",
-        "/assets/gallery-eco-5.jpg",
+        "/assets/g-social-1.jpg",
+        "/assets/g-social-2.jpg",
+        "/assets/g-social-3.jpg",
       ],
     },
   },

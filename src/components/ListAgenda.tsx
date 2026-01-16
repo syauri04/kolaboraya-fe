@@ -244,7 +244,7 @@ export default function ListAgenda({ agendas, categories }: ListAgendaProps) {
 
                   <div className="flex items-start gap-3 text-lg leading-[22px]">
                     <FiMapPin size={20} className="text-primary mt-1" />
-                    <span>{agenda.location}</span>
+                    <span className="w-[95%]">{agenda.location}</span>
                   </div>
                 </div>
 

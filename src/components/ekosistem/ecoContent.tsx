@@ -38,7 +38,7 @@ export default function EcoContent({ data, theme }: Props) {
             style={{ backgroundColor: theme.badgeAksiBg }}
           >
             <span
-              className={`font-bruliafont text-[40px] leading-[56px] ${
+              className={`font-bruliafont text-[32px] lg:text-[40px] lg:leading-[56px] ${
                 theme.textColorSecondary
                   ? `text-[${theme.textColorSecondary}]`
                   : "text-[#FFFBE9]"
@@ -54,14 +54,14 @@ export default function EcoContent({ data, theme }: Props) {
               theme.textColorPrimary
                 ? `text-[${theme.textColorPrimary}]`
                 : "text-[#FFFBE9]"
-            } text-[64px] leading-[80px] font-bold`}
+            } text-[40px] lg:text-[64px] lg:leading-[80px] font-bold`}
           >
             {data.title}
           </h1>
 
           {/* Summary */}
           <p
-            className={`max-w-[900px] text-xl leading-[24px] text-center ${
+            className={`max-w-[900px] text-xl lg:leading-[24px] text-center ${
               theme.textColorPrimary
                 ? `text-[${theme.textColorPrimary}]`
                 : "text-[#FFFBE9]"
@@ -72,7 +72,7 @@ export default function EcoContent({ data, theme }: Props) {
 
           {/* Collective Support Box */}
           <div
-            className="relative mt-20 rounded-[56px] p-20 max-w-[1000px] w-full"
+            className="relative mt-20 rounded-[56px] px-8 py-20 md:p-20 max-w-[1000px] w-full"
             style={{ backgroundColor: theme.bgColorDukungan }}
           >
             {/* Floating Badge */}

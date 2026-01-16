@@ -46,7 +46,7 @@ export default function EcoBuilder({
   return (
     <section className="w-full">
       <div className="container mx-auto px-3 sm:px-6 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-[300px_1fr] gap-6 items-stretch">
+        <div className="grid grid-cols-1 lg:grid-cols-[300px_1fr] gap-6 items-stretch">
           {/* LEFT - Title centered */}
           <div className="flex items-center">
             <motion.h2
@@ -57,7 +57,7 @@ export default function EcoBuilder({
                 duration: 0.8,
                 ease: [0.4, 0, 0.2, 1],
               }}
-              className="text-[40px] leading-[48px] font-semibold text-white"
+              className="text-[32px] lg:leading-[48px] font-semibold text-white"
             >
               ECOSYSTEM BUILDER
             </motion.h2>
@@ -69,7 +69,7 @@ export default function EcoBuilder({
             initial="hidden"
             animate="visible"
             transition={{ delayChildren: 0.25 }}
-            className="flex flex-wrap gap-4 w-[60%]"
+            className="flex flex-wrap gap-4 w-full xl:w-[60%]"
           >
             {data.items.map((item, index) => (
               <motion.a
@@ -82,14 +82,14 @@ export default function EcoBuilder({
                   duration: 0.6,
                   ease: [0.4, 0, 0.2, 1],
                 }}
-                className="flex items-center gap-2 rounded-[8px] px-5 py-3 w-fit font-bruliafont text-2xl leading-[32px] transition hover:opacity-90"
+                className="flex items-center gap-2 rounded-[8px] px-5 py-3 w-fit font-bruliafont text-lg lg:text-2xl leading-[32px] transition hover:opacity-90"
                 style={{
                   backgroundColor: colorBadge || "#FFD8D5",
                   color: colorText || "#FFFBE9",
                 }}
               >
                 <span>{item.label}</span>
-                <FiArrowUpRight className="text-3xl" />
+                <FiArrowUpRight className="text-xl lg:text-3xl" />
               </motion.a>
             ))}
           </motion.div>

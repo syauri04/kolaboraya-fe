@@ -57,7 +57,7 @@ export function formatHomeSenarai(homeSenarai: HomeResponse["data"]) {
 
 export function formatHomeKolaborator(homeData: HomeResponse["data"]) {
   const API_URL = process.env.NEXT_PUBLIC_API_BASE_URL ?? "";
-  console.log("data", homeData.sectionKolaborator);
+  // console.log("data", homeData.sectionKolaborator);
   const attr = homeData.sectionKolaborator;
 
   const logos = attr.logoKolaborator

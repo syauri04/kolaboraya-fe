@@ -34,7 +34,7 @@ export default function Header() {
     { name: "Agenda", href: "/agenda" },
     { name: "Produk Kolaborasi", href: "/produk-kolaborasi" },
     { name: "Senarai Cerita", href: "/senarai-cerita" },
-    { name: "Ekosistem", href: "/ekosistem" },
+    // { name: "Ekosistem", href: "/ekosistem" },
   ];
 
   return (

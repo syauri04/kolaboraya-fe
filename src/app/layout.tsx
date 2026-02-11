@@ -4,6 +4,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 const inclusiveSans = Inclusive_Sans({
   variable: "--font-inclusive-sans",
@@ -37,6 +38,7 @@ export default function RootLayout({
         {children}
         <Footer />
       </body>
+      <GoogleAnalytics gaId="G-H8WGSHPER4" />
     </html>
   );
 }

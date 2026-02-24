@@ -3,7 +3,7 @@ import { fetchFromStrapi } from "./strapi";
 
 export async function fetchHome(): Promise<HomeResponse["data"]> {
   const res = await fetchFromStrapi<HomeResponse>(
-    "/home-page?populate[sectionKolaborasi][populate]=*&populate[sectionOnText][populate]=*&populate[sectionSenarai][populate]=*&populate[sectionKolaborator][populate]=*"
+    "/home-page?populate[sectionKolaborasi][populate]=*&populate[sectionOnText][populate]=*&populate[sectionSenarai][populate]=*&populate[sectionKolaborator][populate]=*",
   );
 
   const data = res.data;
@@ -22,7 +22,11 @@ export function formatHomeKolaborasi(homeKolaborasi: HomeResponse["data"]) {
 
   const images = [attr.photo_1?.url, attr.photo_2?.url, attr.photo_3?.url]
     .filter(Boolean)
-    .map((url) => API_URL + url);
+    .map((url) => url);
+
+  // const images = [attr.photo_1?.url, attr.photo_2?.url, attr.photo_3?.url]
+  //   .filter(Boolean)
+  //   .map((url) => API_URL + url);
 
   return {
     summary: attr.summary,
@@ -44,10 +48,12 @@ export function formatHomeSenarai(homeSenarai: HomeResponse["data"]) {
   const API_URL = process.env.NEXT_PUBLIC_API_BASE_URL ?? "";
 
   const attr = homeSenarai.sectionSenarai;
-
   const images = [attr.imageCard_1?.url, attr.imageCard_2?.url]
     .filter(Boolean)
-    .map((url) => API_URL + url);
+    .map((url) => url);
+  // const images = [attr.imageCard_1?.url, attr.imageCard_2?.url]
+  //   .filter(Boolean)
+  //   .map((url) => API_URL + url);
 
   return {
     summarySenarai: attr.summarySenarai,

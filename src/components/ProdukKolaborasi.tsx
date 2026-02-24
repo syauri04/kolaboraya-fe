@@ -98,7 +98,7 @@ export default function ProdukKolaborasi({ category }: CategoryProps) {
   useEffect(() => {
     if (containerRef.current) {
       setWidth(
-        containerRef.current.scrollWidth - containerRef.current.offsetWidth
+        containerRef.current.scrollWidth - containerRef.current.offsetWidth,
       );
     }
   }, []);
@@ -175,7 +175,7 @@ export default function ProdukKolaborasi({ category }: CategoryProps) {
                   <Image
                     src={
                       cat.image?.url
-                        ? `${process.env.NEXT_PUBLIC_API_BASE_URL}${cat.image.url}`
+                        ? `${cat.image.url}`
                         : "/assets/placeholder.png"
                     }
                     alt={cat.Category}

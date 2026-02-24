@@ -56,7 +56,7 @@ export default function ListAgenda({ agendas, categories }: ListAgendaProps) {
     // Filter kategori
     if (activeCategory !== "semua") {
       filtered = filtered.filter(
-        (a) => a.categorySlug.toLowerCase() === activeCategory.toLowerCase()
+        (a) => a.categorySlug.toLowerCase() === activeCategory.toLowerCase(),
       );
     }
 
@@ -86,7 +86,7 @@ export default function ListAgenda({ agendas, categories }: ListAgendaProps) {
   const startIdx = (currentPage - 1) * itemsPerPage;
   const currentAgendas = filteredAgendas.slice(
     startIdx,
-    startIdx + itemsPerPage
+    startIdx + itemsPerPage,
   );
 
   const handlePageChange = (page: number) => {
@@ -190,7 +190,7 @@ export default function ListAgenda({ agendas, categories }: ListAgendaProps) {
 
             const { dayLabel, dateLabel } = formatAgendaDate(
               agenda.dateStart,
-              agenda.dateEnd
+              agenda.dateEnd,
             );
 
             const generateGoogleCalendarLink = (agenda: AgendaItem) => {
@@ -288,7 +288,7 @@ export default function ListAgenda({ agendas, categories }: ListAgendaProps) {
                   <Image
                     src={
                       agenda.image?.url
-                        ? `${process.env.NEXT_PUBLIC_API_BASE_URL}${agenda.image.url}`
+                        ? `${agenda.image.url}`
                         : "/assets/placeholder.png"
                     }
                     alt={agenda.title}

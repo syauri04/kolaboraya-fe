@@ -125,9 +125,7 @@ export default function AudioVisualContent() {
       </div>
 
       {/* VIDEO MODAL */}
-      {activeVideo && (
-        <VideoModal videoId={activeVideo} onClose={closeModal} />
-      )}
+      {activeVideo && <VideoModal videoId={activeVideo} onClose={closeModal} />}
     </>
   );
 }
@@ -175,9 +173,7 @@ function CardItem({ item, onPlay }: CardItemProps) {
       <div className="relative w-full aspect-[404/227]">
         <Image
           src={
-            item.image?.url
-              ? `${process.env.NEXT_PUBLIC_API_BASE_URL}${item.image.url}`
-              : "/assets/placeholder.png"
+            item.image?.url ? `${item.image.url}` : "/assets/placeholder.png"
           }
           alt={item.title}
           fill
@@ -194,9 +190,7 @@ function CardItem({ item, onPlay }: CardItemProps) {
         )}
       </div>
 
-      <h3 className="text-2xl font-bruliafont text-primary">
-        {item.title}
-      </h3>
+      <h3 className="text-2xl font-bruliafont text-primary">{item.title}</h3>
 
       <p className="text-2xl text-[#5C5C5C]">{item.summary}</p>
 

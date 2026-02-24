@@ -27,9 +27,7 @@ function mapSenaraiToBlogPost(item: SenaraiItem): BlogPost {
     slug: item.slug,
     title: item.title,
     summary: item.summary ?? "",
-    image: item.image?.url
-      ? `${process.env.NEXT_PUBLIC_API_BASE_URL}${item.image.url}`
-      : "/assets/placeholder.png",
+    image: item.image?.url ? `${item.image.url}` : "/assets/placeholder.png",
     date: new Date(item.publishedAt).toLocaleDateString("id-ID", {
       day: "2-digit",
       month: "long",

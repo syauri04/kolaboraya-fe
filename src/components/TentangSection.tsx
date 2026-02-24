@@ -117,7 +117,7 @@ const TentangSection: React.FC<TentangSectionProps> = ({
         animate={inView ? "visible" : "hidden"}
       >
         <Image
-          src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${image?.url}`}
+          src={`${image?.url}`}
           alt={image?.alternativeText ?? "Ornament"}
           width={1024}
           height={700}

@@ -7,7 +7,7 @@ import { fetchFromStrapi } from "./strapi";
 
 export async function fetchBannerAgenda(): Promise<BannerFormatted> {
   const res = await fetchFromStrapi<BannerResponse>(
-    "/banner-agenda?populate=banner.imageBackground"
+    "/banner-agenda?populate=banner.imageBackground",
   );
 
   const data = res.data;
@@ -20,7 +20,7 @@ export async function fetchBannerAgenda(): Promise<BannerFormatted> {
   const bg = data.banner.imageBackground;
   const getUrl = (media: StrapiMediaNullable) => {
     if (!media?.url) return null;
-    return API_URL + media.url;
+    return media.url;
   };
 
   return {
@@ -32,7 +32,7 @@ export async function fetchBannerAgenda(): Promise<BannerFormatted> {
 
 export async function fetchBannerProduk(): Promise<BannerFormatted> {
   const res = await fetchFromStrapi<BannerResponse>(
-    "/banner-produk?populate=banner.imageBackground"
+    "/banner-produk?populate=banner.imageBackground",
   );
 
   const data = res.data;
@@ -45,7 +45,7 @@ export async function fetchBannerProduk(): Promise<BannerFormatted> {
   const bg = data.banner.imageBackground;
   const getUrl = (media: StrapiMediaNullable) => {
     if (!media?.url) return null;
-    return API_URL + media.url;
+    return media.url;
   };
 
   return {
@@ -57,7 +57,7 @@ export async function fetchBannerProduk(): Promise<BannerFormatted> {
 
 export async function fetchBannerSenarai(): Promise<BannerFormatted> {
   const res = await fetchFromStrapi<BannerResponse>(
-    "/banner-senarai?populate=banner.imageBackground"
+    "/banner-senarai?populate=banner.imageBackground",
   );
 
   const data = res.data;
@@ -70,7 +70,7 @@ export async function fetchBannerSenarai(): Promise<BannerFormatted> {
   const bg = data.banner.imageBackground;
   const getUrl = (media: StrapiMediaNullable) => {
     if (!media?.url) return null;
-    return API_URL + media.url;
+    return media.url;
   };
 
   return {

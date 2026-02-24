@@ -55,11 +55,7 @@ export default function ModulContent() {
                 {/* IMAGE */}
                 <div className="w-full aspect-square relative mb-4">
                   <Image
-                    src={
-                      imageUrl.startsWith("http")
-                        ? imageUrl
-                        : `${process.env.NEXT_PUBLIC_API_BASE_URL}${imageUrl}`
-                    }
+                    src={imageUrl.startsWith("http") ? imageUrl : `${imageUrl}`}
                     alt={item.title}
                     fill
                     className="object-cover rounded-[18px]"
@@ -111,7 +107,7 @@ export default function ModulContent() {
                     src={
                       selectedProduk.image?.url.startsWith("http")
                         ? selectedProduk.image.url
-                        : `${process.env.NEXT_PUBLIC_API_BASE_URL}${selectedProduk.image.url}`
+                        : `${selectedProduk.image.url}`
                     }
                     alt={selectedProduk.title}
                     fill

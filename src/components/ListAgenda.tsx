@@ -227,7 +227,19 @@ export default function ListAgenda({ agendas, categories }: ListAgendaProps) {
                 transition={{ duration: 0.3 }}
                 className={`flex flex-col h-full p-7 bg-transparent ${borderRight} ${borderBottom}`}
               >
-                <h3 className="font-bruliafont text-4xl text-primary leading-[50px] mb-3 min-h-[100px]">
+                <div className="w-full aspect-[4/5] relative">
+                  <Image
+                    src={
+                      agenda.image?.url
+                        ? `${agenda.image.url}`
+                        : "/assets/placeholder.png"
+                    }
+                    alt={agenda.title}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <h3 className="font-bruliafont text-xl text-primary leading-[50px] mb-3 min-h-[100px]">
                   {agenda.title}
                 </h3>
                 <p className="text-primary text-lg leading-[22px] mb-2">
@@ -282,19 +294,6 @@ export default function ListAgenda({ agendas, categories }: ListAgendaProps) {
                       />
                     </span>
                   </button>
-                </div>
-
-                <div className="w-full aspect-[389/219] relative">
-                  <Image
-                    src={
-                      agenda.image?.url
-                        ? `${agenda.image.url}`
-                        : "/assets/placeholder.png"
-                    }
-                    alt={agenda.title}
-                    fill
-                    className="object-cover"
-                  />
                 </div>
               </motion.div>
             );

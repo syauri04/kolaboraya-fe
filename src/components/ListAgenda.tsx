@@ -239,7 +239,7 @@ export default function ListAgenda({ agendas, categories }: ListAgendaProps) {
                     className="object-cover"
                   />
                 </div>
-                <h3 className="font-bruliafont text-xl text-primary leading-[30px] mt-4 mb-3 min-h-[65px]">
+                <h3 className="font-bruliafont text-xl text-primary leading-[30px] mt-8 mb-3 ">
                   {agenda.title}
                 </h3>
                 <p className="text-primary text-lg leading-[22px] mb-2">

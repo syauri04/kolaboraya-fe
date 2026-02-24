@@ -3,7 +3,7 @@ import { fetchFromStrapi } from "./strapi";
 
 export async function fetchHero(): Promise<HeroResponse["data"]> {
   const res = await fetchFromStrapi<HeroResponse>(
-    "/hero-page?populate[backgroundHero][populate]=*"
+    "/hero-page?populate[backgroundHero][populate]=*",
   );
 
   const data = res.data;
@@ -20,8 +20,13 @@ export function formatHero(hero: HeroResponse["data"]) {
   const bg = hero.backgroundHero;
   const getUrl = (media: StrapiMediaNullable) => {
     if (!media?.url) return null;
-    return API_URL + media.url;
+    return media.url;
   };
+  // FOR LOKAL
+  // const getUrl = (media: StrapiMediaNullable) => {
+  //   if (!media?.url) return null;
+  //   return API_URL + media.url;
+  // };
 
   const images = [
     getUrl(bg?.photo_1 ?? null),

@@ -24,7 +24,7 @@ export interface LinkNodeChild {
 // ============================
 
 function isLinkNode(
-  node: { text: string; type: string } | LinkNodeChild
+  node: { text: string; type: string } | LinkNodeChild,
 ): node is LinkNodeChild {
   return node.type === "link" && "url" in node;
 }
@@ -49,7 +49,8 @@ export function mapRichContent(nodes: RichTextNode[]) {
         }
 
         if (isLinkNode(child)) {
-          const linkText = child.children?.map((c) => c.text).join("") ?? child.url;
+          const linkText =
+            child.children?.map((c) => c.text).join("") ?? child.url;
           blocks.push({ type: "link", url: child.url, text: linkText });
         }
       });
@@ -68,7 +69,6 @@ export function mapRichContent(nodes: RichTextNode[]) {
 
   return blocks;
 }
-
 
 function formatDate(dateStr: string) {
   return new Date(dateStr).toLocaleDateString("id-ID", {
@@ -112,11 +112,7 @@ export default async function SenaraiDetailPage({
       {/* Cover Image */}
       {data.image?.url && (
         <Image
-          src={
-            data.image.url
-              ? `${process.env.NEXT_PUBLIC_API_BASE_URL}${data.image.url}`
-              : "/assets/placeholder.png"
-          }
+          src={data.image.url ? `${data.image.url}` : "/assets/placeholder.png"}
           alt={data.title}
           width={1600}
           height={900}
@@ -137,7 +133,7 @@ export default async function SenaraiDetailPage({
         </p>
 
         {/* Rich Content */}
-        
+
         <div className="prose max-w-none font-inclusive">
           {blocks.map((block, i) => {
             if (block.type === "text") {
@@ -178,7 +174,12 @@ export default async function SenaraiDetailPage({
             if (block.type === "link") {
               return (
                 <p key={i}>
-                  <a href={block.url} target="_blank" rel="noopener noreferrer" className="text-blue-600 underline">
+                  <a
+                    href={block.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-600 underline"
+                  >
                     {block.text}
                   </a>
                 </p>

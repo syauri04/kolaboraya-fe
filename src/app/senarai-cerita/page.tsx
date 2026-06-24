@@ -33,6 +33,7 @@ function mapSenaraiToBlogPost(item: SenaraiItem): BlogPost {
       month: "long",
       year: "numeric",
     }),
+    url_file: item.url_file ?? "",
     featured: item.featured,
   };
 }

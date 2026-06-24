@@ -9,6 +9,7 @@ export type BlogPost = {
   image: string;
   date: string;
   featured: boolean;
+  url_file?: string;
 };
 
 type BlogSenaraiProps = {
@@ -22,6 +23,7 @@ export default function BlogSenaraiFour({
   title,
   summary,
 }: BlogSenaraiProps) {
+  console.log("POST", posts);
   return (
     <section className="container mx-auto px-3 sm:px-6 py-14 md:py-20">
       <CardSectionSenarai title={title} summary={summary} />
@@ -30,7 +32,11 @@ export default function BlogSenaraiFour({
         {posts.map((item) => {
           return (
             <div className="w-full" key={item.id}>
-              <Link href={`/senarai-cerita/${item.slug}`}>
+              <Link
+                href={item.url_file || `/senarai-cerita/${item.slug}`}
+                target={item.url_file ? "_blank" : undefined}
+                rel={item.url_file ? "noopener noreferrer" : undefined}
+              >
                 <div className="relative w-full aspect-[264/338]">
                   <Image
                     src={item.image}

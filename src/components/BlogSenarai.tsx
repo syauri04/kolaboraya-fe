@@ -11,6 +11,7 @@ export type BlogPost = {
   summary: string;
   image: string;
   date: string;
+  url_file: string;
   featured: boolean;
 };
 

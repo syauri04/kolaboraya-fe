@@ -89,7 +89,7 @@ export interface SenaraiItem {
   updatedAt: string;
   publishedAt: string;
   image: StrapiImage;
-
+  url_file: string;
   /** RELATION BARU */
   senarai_cerita_section: SenaraiSection | null;
 }

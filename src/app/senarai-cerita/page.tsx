@@ -51,8 +51,6 @@ export default function SenaraiCerita() {
   const [loading, setLoading] = useState(true);
   const [banner, setBanner] = useState<BannerFormatted | null>(null);
 
-  console.log("banner", banner);
-
   const [sectionsData, setSectionsData] = useState<SectionData[]>([]);
 
   const [ref, inView] = useInView({

@@ -18,8 +18,6 @@ export default function ProdukKolaborasi() {
   const [banner, setBanner] = useState<BannerFormatted | null>(null);
   const [loading, setLoading] = useState(true);
 
-  console.log("banner", banner);
-
   const [produks, setProduks] = useState<ProdukItem[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
   const [ref, inView] = useInView({

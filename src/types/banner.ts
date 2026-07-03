@@ -56,6 +56,13 @@ export interface BannerResponse {
     updatedAt: string;
     publishedAt: string;
     banner: Banner;
+    SectionCollab?: {
+      title: string;
+      summary: string;
+      bgColor: string;
+      link_ketentuan: string;
+      image: StrapiMediaNullable | null;
+    };
   };
   meta: Record<string, unknown>;
 }
@@ -64,4 +71,9 @@ export interface BannerFormatted {
   title: string;
   bgColor: string;
   imageBackground: string | null;
+  titleCollab?: string;
+  summaryCollab?: string;
+  bgColorCollab?: string;
+  linkCollab?: string;
+  imageCollab?: string | null;
 }

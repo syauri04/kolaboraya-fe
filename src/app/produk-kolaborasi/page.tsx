@@ -1,5 +1,6 @@
 "use client";
 
+import CollaborationSection from "@/components/CollaborationSection";
 import ListProduk from "@/components/ListProduk";
 import SkeletonBanner from "@/components/SkeletonBanner";
 import TabSection from "@/components/tabs/TabSection";
@@ -16,6 +17,8 @@ import { useInView } from "react-intersection-observer";
 export default function ProdukKolaborasi() {
   const [banner, setBanner] = useState<BannerFormatted | null>(null);
   const [loading, setLoading] = useState(true);
+
+  console.log("banner", banner);
 
   const [produks, setProduks] = useState<ProdukItem[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
@@ -58,7 +61,7 @@ export default function ProdukKolaborasi() {
     <div>
       <section
         ref={ref}
-        className="relative   h-auto lg:h-[668px] xl:h-[715px] flex flex-col lg:flex-row items-start overflow-hidden mt-[85px]"
+        className="relative z-30   h-auto lg:h-[668px] xl:h-[715px] flex flex-col lg:flex-row items-start overflow-hidden mt-[85px]"
         style={{ backgroundColor: banner?.bgColor ?? "#729E81" }}
       >
         <div className="container mx-auto px-3 sm:px-6  relative z-10">
@@ -100,6 +103,14 @@ export default function ProdukKolaborasi() {
           />
         </motion.div> */}
       </section>
+      <CollaborationSection
+        title={banner?.titleCollab}
+        summary={banner?.summaryCollab}
+        bgColor={banner?.bgColorCollab}
+        link={banner?.linkCollab}
+        image={banner?.imageCollab}
+        type="produk"
+      />
 
       <TabSection />
       {/* <ListProduk produks={produks} categories={categories} /> */}

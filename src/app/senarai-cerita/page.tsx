@@ -20,6 +20,7 @@ import { BannerFormatted } from "@/types/banner";
 import { BlogPost } from "@/components/BlogSenarai";
 import { SenaraiItem } from "@/types/senarai";
 import { fetchSenaraiSections } from "@/services/senaraiSection";
+import CollaborationSection from "@/components/CollaborationSection";
 
 function mapSenaraiToBlogPost(item: SenaraiItem): BlogPost {
   return {
@@ -49,6 +50,8 @@ type SectionData = {
 export default function SenaraiCerita() {
   const [loading, setLoading] = useState(true);
   const [banner, setBanner] = useState<BannerFormatted | null>(null);
+
+  console.log("banner", banner);
 
   const [sectionsData, setSectionsData] = useState<SectionData[]>([]);
 
@@ -161,6 +164,15 @@ export default function SenaraiCerita() {
           />
         </motion.div>
       </section>
+
+      <CollaborationSection
+        title={banner?.titleCollab}
+        summary={banner?.summaryCollab}
+        bgColor={banner?.bgColorCollab}
+        link={banner?.linkCollab}
+        image={banner?.imageCollab}
+        type="senarai"
+      />
 
       {/* Render Sections Dinamis */}
       {sectionsData.map((sec) => {

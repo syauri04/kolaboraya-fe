@@ -9,7 +9,7 @@ export default function TabSection() {
   const [activeTab, setActiveTab] = useState<"modul" | "audio">("modul");
 
   return (
-    <section className="w-full py-16">
+    <section className="relative z-30 bg-[#FFFBE9] w-full py-16">
       <div className="container mx-auto px-4">
         {/* --- TAB BUTTONS --- */}
         <div className="flex flex-wrap justify-start md:justify-center gap-3 mb-8 md:mb-18">

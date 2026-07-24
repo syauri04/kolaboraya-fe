@@ -75,8 +75,8 @@ export default function Header() {
 
           {/* Desktop Button */}
           <a
-            href="https://pk2025.kolaboraya.id/"
-            className="hidden lg:block ml-6 bg-[#6E87A8] text-white font-bold text-lg px-5 py-2 rounded-[10px] hover:bg-[#7b91c8] transition"
+            href="https://pk2026.kolaboraya.id/"
+            className="hidden lg:block ml-6 bg-[#185DA2] text-white font-bold text-lg px-5 py-2 rounded-[10px] hover:bg-[#104d8a] transition"
           >
             Pasar Kolaboraya
           </a>
@@ -117,8 +117,8 @@ export default function Header() {
             ))}
 
             <Link
-              href="/pasar-kolaboraya"
-              className="bg-[#6E87A8] text-white font-bold text-lg px-6 py-3 rounded-[10px] hover:bg-[#7b91c8] transition"
+              href="https://pk2026.kolaboraya.id"
+              className="bg-[#185DA2] text-white font-bold text-lg px-6 py-3 rounded-[10px] hover:bg-[#104d8a] transition"
               onClick={() => setIsOpen(false)}
             >
               Pasar Kolaboraya

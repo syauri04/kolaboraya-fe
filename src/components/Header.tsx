@@ -78,7 +78,7 @@ export default function Header() {
             href="https://pk2026.kolaboraya.id/"
             className="hidden lg:block ml-6 bg-[#185DA2] text-white font-bold text-lg px-5 py-2 rounded-[10px] hover:bg-[#104d8a] transition"
           >
-            Pasar Kolaboraya
+            Pasar Kolaboraya 2026
           </a>
 
           {/* Mobile Hamburger Button */}
@@ -121,7 +121,7 @@ export default function Header() {
               className="bg-[#185DA2] text-white font-bold text-lg px-6 py-3 rounded-[10px] hover:bg-[#104d8a] transition"
               onClick={() => setIsOpen(false)}
             >
-              Pasar Kolaboraya
+              Pasar Kolaboraya 2026
             </Link>
           </motion.div>
         )}

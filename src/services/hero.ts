@@ -1,6 +1,11 @@
-import { HeroResponse, StrapiMediaNullable } from "@/types/hero";
+import {
+  HeroResponse,
+  HeroSlider,
+  HeroSliderResponse,
+  StrapiMediaNullable,
+} from "@/types/hero";
 import { fetchFromStrapi } from "./strapi";
-
+import { HeroSlide } from "@/components/HeroSlider";
 export async function fetchHero(): Promise<HeroResponse["data"]> {
   const res = await fetchFromStrapi<HeroResponse>(
     "/hero-page?populate[backgroundHero][populate]=*",
@@ -13,6 +18,27 @@ export async function fetchHero(): Promise<HeroResponse["data"]> {
   }
 
   return data;
+}
+
+export async function fetchHeroSlider(): Promise<HeroSlide[]> {
+  const res = await fetchFromStrapi<HeroSliderResponse>(
+    "/hero-banners?populate=image&sort[0]=order:asc&sort[1]=publishedAt:desc",
+  );
+
+  const getUrl = (media: StrapiMediaNullable) => {
+    if (!media?.url) return null;
+    return media.url;
+    // atau API_URL + media.url
+  };
+
+  return res.data.map((item) => ({
+    id: item.id,
+    title: item.title,
+    summary: item.summary,
+    buttonText: item.buttonText,
+    buttonHref: item.buttonHref,
+    image: getUrl(item.image),
+  }));
 }
 
 export function formatHero(hero: HeroResponse["data"]) {

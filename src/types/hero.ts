@@ -62,7 +62,21 @@ export interface Hero {
   backgroundHero: BackgroundHero | null;
 }
 
+export interface HeroSlider {
+  id: number;
+  image: StrapiMediaNullable | null;
+  title: string;
+  summary: string;
+  buttonText: string;
+  buttonHref: string;
+}
+
 export interface HeroResponse {
   data: Hero;
+  meta: Record<string, unknown>;
+}
+
+export interface HeroSliderResponse {
+  data: HeroSlider[];
   meta: Record<string, unknown>;
 }

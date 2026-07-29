@@ -32,7 +32,7 @@ export default function HeroSlider({ slides }: HeroSliderProps) {
     "opacity-0 translate-y-6 motion-safe:transition-all motion-safe:duration-700 motion-safe:ease-out [.swiper-slide-active_&]:opacity-100 [.swiper-slide-active_&]:translate-y-0";
 
   return (
-    <section className="px-4 py-4  lg:px-6 lg:py-10 mt-[85px]">
+    <section className="mt-[85px]">
       <div className="relative mx-auto ">
         <Swiper
           modules={[Autoplay, EffectFade, Navigation, Pagination]}
@@ -49,7 +49,7 @@ export default function HeroSlider({ slides }: HeroSliderProps) {
           onSwiper={(s) => {
             swiperRef.current = s;
           }}
-          className="hero-slider overflow-hidden rounded-[28px] sm:rounded-[36px] lg:rounded-[48px]"
+          className="hero-slider overflow-hidden "
         >
           {slides.map((slide, index) => (
             <SwiperSlide key={slide.id}>
@@ -68,7 +68,9 @@ export default function HeroSlider({ slides }: HeroSliderProps) {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/25 to-black/10" />
 
                 {/* Centered content */}
-                <div className="relative z-10 flex h-full flex-col items-center justify-center px-6 text-center sm:px-12 lg:px-20">
+                <div
+                  className={`relative z-10 flex h-full flex-col items-center ${slide.title ? `justify-center` : `justify-end pb-20`}  px-6 text-center sm:px-12 lg:px-20`}
+                >
                   <h2
                     className={`max-w-3xl text-4xl font-bruliafont font-bold leading-tight text-white sm:text-5xl lg:text-7xl ${textBase}`}
                     style={{ transitionDelay: "200ms" }}

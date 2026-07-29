@@ -55,8 +55,7 @@ export default function HeroSlider({ slides }: HeroSliderProps) {
               <div className="relative h-[460px] w-full sm:h-[620px] lg:h-[720px]">
                 {/* Background image with slow ken-burns zoom while active */}
                 <Image
-                  src="/assets/toBanner.png"
-                  // src={slide.image ?? ""}
+                  src={slide.image ?? ""}
                   alt={slide.title}
                   fill
                   priority={index === 0}

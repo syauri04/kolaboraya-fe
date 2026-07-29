@@ -35,8 +35,7 @@ export default function HeroSlider({ slides }: HeroSliderProps) {
     <section className="mt-[85px]">
       <div className="relative mx-auto ">
         <Swiper
-          modules={[Autoplay, EffectFade, Navigation, Pagination]}
-          effect="fade"
+          modules={[Autoplay, Navigation, Pagination]}
           fadeEffect={{ crossFade: true }}
           speed={1100}
           autoplay={{ delay: 6000, disableOnInteraction: false }}
@@ -53,23 +52,24 @@ export default function HeroSlider({ slides }: HeroSliderProps) {
         >
           {slides.map((slide, index) => (
             <SwiperSlide key={slide.id}>
-              <div className="relative h-[460px] w-full sm:h-[520px] lg:h-[640px]">
+              <div className="relative h-[460px] w-full sm:h-[620px] lg:h-[720px]">
                 {/* Background image with slow ken-burns zoom while active */}
                 <Image
-                  src={slide.image ?? ""}
+                  src="/assets/toBanner.png"
+                  // src={slide.image ?? ""}
                   alt={slide.title}
                   fill
                   priority={index === 0}
                   sizes="100vw"
-                  className="scale-100 object-cover motion-safe:transition-transform motion-safe:duration-[7000ms] motion-safe:ease-out motion-safe:[.swiper-slide-active_&]:scale-110"
+                  className="object-cover"
                 />
 
                 {/* Legibility overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/25 to-black/10" />
+                {/* <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/25 to-black/10" /> */}
 
                 {/* Centered content */}
                 <div
-                  className={`relative z-10 flex h-full flex-col items-center ${slide.title ? `justify-center` : `justify-end pb-20`}  px-6 text-center sm:px-12 lg:px-20`}
+                  className={`relative z-10 flex h-full flex-col items-center ${slide.title ? `justify-center` : `justify-end pb-32`}  px-6 text-center sm:px-12 lg:px-20`}
                 >
                   <h2
                     className={`max-w-3xl text-4xl font-bruliafont font-bold leading-tight text-white sm:text-5xl lg:text-7xl ${textBase}`}

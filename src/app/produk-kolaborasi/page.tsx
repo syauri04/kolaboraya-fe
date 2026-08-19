@@ -101,14 +101,14 @@ export default function ProdukKolaborasi() {
           />
         </motion.div> */}
       </section>
-      <CollaborationSection
+      {/* <CollaborationSection
         title={banner?.titleCollab}
         summary={banner?.summaryCollab}
         bgColor={banner?.bgColorCollab}
         link={banner?.linkCollab}
         image={banner?.imageCollab}
         type="produk"
-      />
+      /> */}
 
       <TabSection />
       {/* <ListProduk produks={produks} categories={categories} /> */}

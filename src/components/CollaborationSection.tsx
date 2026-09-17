@@ -84,7 +84,7 @@ export default function CollaborationSection({
               whileHover={{ scale: 1.04, y: -2 }}
               whileTap={{ scale: 0.97 }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
-              className=" bg-[#386366] px-7 py-3 text-sm  text-[#FFFBE9] shadow-sm transition-colors hover:bg-[#2c4f52] sm:text-xl"
+              className=" bg-[#EA7841] px-7 py-3 text-sm  text-[#FFFBE9] shadow-sm transition-colors hover:bg-[#fb7938] sm:text-xl"
             >
               Submit
             </motion.a>

@@ -60,8 +60,9 @@ export interface BannerResponse {
       title: string;
       summary: string;
       bgColor: string;
-      link_ketentuan: string;
+      link_submission: string;
       image: StrapiMediaNullable | null;
+      file_ketentuan: StrapiMediaNullable | null;
     };
   };
   meta: Record<string, unknown>;
@@ -76,4 +77,5 @@ export interface BannerFormatted {
   bgColorCollab?: string;
   linkCollab?: string;
   imageCollab?: string | null;
+  fileCollab?: string | null;
 }

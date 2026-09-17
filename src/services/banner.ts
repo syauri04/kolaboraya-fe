@@ -32,7 +32,7 @@ export async function fetchBannerAgenda(): Promise<BannerFormatted> {
 
 export async function fetchBannerProduk(): Promise<BannerFormatted> {
   const res = await fetchFromStrapi<BannerResponse>(
-    "/banner-produk?populate=banner.imageBackground&populate=SectionCollab.image",
+    "/banner-produk?populate=banner.imageBackground&populate=SectionCollab.image&populate=SectionCollab.file_ketentuan",
   );
 
   const data = res.data;
@@ -44,6 +44,7 @@ export async function fetchBannerProduk(): Promise<BannerFormatted> {
   const API_URL = process.env.NEXT_PUBLIC_API_BASE_URL ?? "";
   const bg = data.banner.imageBackground;
   const bgCollab = data.SectionCollab?.image;
+  const fileCollab = data.SectionCollab?.file_ketentuan;
   const getUrl = (media: StrapiMediaNullable | undefined) => {
     if (!media?.url) return null;
     return media.url;
@@ -56,14 +57,15 @@ export async function fetchBannerProduk(): Promise<BannerFormatted> {
     titleCollab: data.SectionCollab?.title ?? "",
     summaryCollab: data.SectionCollab?.summary ?? "",
     bgColorCollab: data.SectionCollab?.bgColor ?? "",
-    linkCollab: data.SectionCollab?.link_ketentuan ?? "",
+    linkCollab: data.SectionCollab?.link_submission ?? "",
     imageCollab: getUrl(bgCollab),
+    fileCollab: getUrl(fileCollab),
   };
 }
 
 export async function fetchBannerSenarai(): Promise<BannerFormatted> {
   const res = await fetchFromStrapi<BannerResponse>(
-    "/banner-senarai?populate=banner.imageBackground&populate=SectionCollab.image",
+    "/banner-senarai?populate=banner.imageBackground&populate=SectionCollab.image&populate=SectionCollab.file_ketentuan",
   );
 
   const data = res.data;
@@ -75,6 +77,7 @@ export async function fetchBannerSenarai(): Promise<BannerFormatted> {
   const API_URL = process.env.NEXT_PUBLIC_API_BASE_URL ?? "";
   const bg = data.banner.imageBackground;
   const bgCollab = data.SectionCollab?.image;
+  const fileCollab = data.SectionCollab?.file_ketentuan;
   const getUrl = (media: StrapiMediaNullable | undefined) => {
     if (!media?.url) return null;
     return media.url;
@@ -87,7 +90,8 @@ export async function fetchBannerSenarai(): Promise<BannerFormatted> {
     titleCollab: data.SectionCollab?.title ?? "",
     summaryCollab: data.SectionCollab?.summary ?? "",
     bgColorCollab: data.SectionCollab?.bgColor ?? "",
-    linkCollab: data.SectionCollab?.link_ketentuan ?? "",
+    linkCollab: data.SectionCollab?.link_submission ?? "",
     imageCollab: getUrl(bgCollab),
+    fileCollab: getUrl(fileCollab),
   };
 }

@@ -169,6 +169,7 @@ export default function SenaraiCerita() {
         bgColor={banner?.bgColorCollab}
         link={banner?.linkCollab}
         image={banner?.imageCollab}
+        file={banner?.fileCollab}
         type="senarai"
       />
 

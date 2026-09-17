@@ -30,6 +30,7 @@ interface CollaborationSectionProps {
   bgColor?: string;
   link?: string;
   image?: string | null;
+  file?: string | null;
   type?: "produk" | "senarai";
 }
 
@@ -39,6 +40,7 @@ export default function CollaborationSection({
   bgColor,
   link,
   image,
+  file,
   type,
 }: CollaborationSectionProps) {
   return (
@@ -75,22 +77,20 @@ export default function CollaborationSection({
             variants={itemVariants}
             className="mt-2 flex flex-wrap items-center gap-4"
           >
-            <motion.button
+            <motion.a
+              href={link || "#"}
+              target="_blank"
+              rel="noopener noreferrer"
               whileHover={{ scale: 1.04, y: -2 }}
               whileTap={{ scale: 0.97 }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
               className=" bg-[#386366] px-7 py-3 text-sm  text-[#FFFBE9] shadow-sm transition-colors hover:bg-[#2c4f52] sm:text-xl"
-              style={
-                type === "produk"
-                  ? { backgroundColor: "#386366" }
-                  : { backgroundColor: "#EA7841" }
-              }
             >
               Submit
-            </motion.button>
+            </motion.a>
 
             <motion.a
-              href={link || "#"}
+              href={file || "#"}
               target="_blank"
               rel="noopener noreferrer"
               whileHover={{ scale: 1.04, y: -2 }}

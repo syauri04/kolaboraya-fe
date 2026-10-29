@@ -1,5 +1,7 @@
 "use client";
 
+import { getStrapiMedia } from "@/utils/strapiMedia";
+
 import React from "react";
 import { motion, Variants } from "framer-motion";
 import Image from "next/image";
@@ -117,7 +119,7 @@ const TentangSection: React.FC<TentangSectionProps> = ({
         animate={inView ? "visible" : "hidden"}
       >
         <Image
-          src={`${image?.url}`}
+          src={getStrapiMedia(image?.url) ?? ""}
           alt={image?.alternativeText ?? "Ornament"}
           width={1024}
           height={700}

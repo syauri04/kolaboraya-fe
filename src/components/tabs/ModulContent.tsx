@@ -1,5 +1,7 @@
 "use client";
 
+import { getStrapiMedia } from "@/utils/strapiMedia";
+
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { fetchProduks } from "@/services/produk";
@@ -39,7 +41,7 @@ export default function ModulContent() {
         <AnimatePresence>
           {produks.map((item) => {
             const imageUrl =
-              item.image?.formats?.thumbnail?.url ?? item.image?.url ?? "";
+              getStrapiMedia(item.image?.formats?.thumbnail?.url ?? item.image?.url) ?? "";
 
             return (
               <motion.div
@@ -105,9 +107,7 @@ export default function ModulContent() {
                 <div className="relative w-full h-64 md:h-80 rounded-[18px] overflow-hidden bg-white">
                   <Image
                     src={
-                      selectedProduk.image?.url.startsWith("http")
-                        ? selectedProduk.image.url
-                        : `${selectedProduk.image.url}`
+                      getStrapiMedia(selectedProduk.image?.url) ?? ""
                     }
                     alt={selectedProduk.title}
                     fill

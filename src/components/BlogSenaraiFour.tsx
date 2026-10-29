@@ -16,17 +16,19 @@ type BlogSenaraiProps = {
   posts: BlogPost[];
   title: string;
   summary: string;
+  bgColor?: string;
 };
 
 export default function BlogSenaraiFour({
   posts,
   title,
   summary,
+  bgColor,
 }: BlogSenaraiProps) {
   console.log("POST", posts);
   return (
     <section className="container mx-auto px-3 sm:px-6 py-14 md:py-20">
-      <CardSectionSenarai title={title} summary={summary} />
+      <CardSectionSenarai title={title} summary={summary} bgColor={bgColor} />
 
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-12">
         {posts.map((item) => {

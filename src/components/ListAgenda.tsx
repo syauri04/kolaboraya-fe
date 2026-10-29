@@ -1,5 +1,7 @@
 "use client";
 
+import { getStrapiMedia } from "@/utils/strapiMedia";
+
 import { useState, useMemo, useEffect } from "react";
 import Image from "next/image";
 import { ArrowRight, ChevronDown, ChevronRight } from "lucide-react";
@@ -230,9 +232,7 @@ export default function ListAgenda({ agendas, categories }: ListAgendaProps) {
                 <div className="w-full aspect-[4/5] relative">
                   <Image
                     src={
-                      agenda.image?.url
-                        ? `${agenda.image.url}`
-                        : "/assets/placeholder.png"
+                      getStrapiMedia(agenda.image?.url) ?? "/assets/placeholder.png"
                     }
                     alt={agenda.title}
                     fill

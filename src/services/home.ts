@@ -1,3 +1,4 @@
+import { getStrapiMedia } from "@/utils/strapiMedia";
 import { HomeResponse } from "@/types/home";
 import { fetchFromStrapi } from "./strapi";
 
@@ -22,7 +23,7 @@ export function formatHomeKolaborasi(homeKolaborasi: HomeResponse["data"]) {
 
   const images = [attr.photo_1?.url, attr.photo_2?.url, attr.photo_3?.url]
     .filter(Boolean)
-    .map((url) => url);
+    .map((url) => getStrapiMedia(url) as string);
 
   // const images = [attr.photo_1?.url, attr.photo_2?.url, attr.photo_3?.url]
   //   .filter(Boolean)

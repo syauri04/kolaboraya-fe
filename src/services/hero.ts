@@ -1,3 +1,4 @@
+import { getStrapiMedia } from "@/utils/strapiMedia";
 import {
   HeroResponse,
   HeroSlider,
@@ -27,7 +28,7 @@ export async function fetchHeroSlider(): Promise<HeroSlide[]> {
 
   const getUrl = (media: StrapiMediaNullable) => {
     if (!media?.url) return null;
-    return media.url;
+    return getStrapiMedia(media.url);
     // atau API_URL + media.url
   };
 
@@ -46,7 +47,7 @@ export function formatHero(hero: HeroResponse["data"]) {
   const bg = hero.backgroundHero;
   const getUrl = (media: StrapiMediaNullable) => {
     if (!media?.url) return null;
-    return media.url;
+    return getStrapiMedia(media.url);
   };
   // FOR LOKAL
   // const getUrl = (media: StrapiMediaNullable) => {

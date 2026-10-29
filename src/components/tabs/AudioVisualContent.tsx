@@ -1,5 +1,7 @@
 "use client";
 
+import { getStrapiMedia } from "@/utils/strapiMedia";
+
 import { useEffect, useState, useCallback } from "react";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -173,7 +175,7 @@ function CardItem({ item, onPlay }: CardItemProps) {
       <div className="relative w-full aspect-[404/227]">
         <Image
           src={
-            item.image?.url ? `${item.image.url}` : "/assets/placeholder.png"
+            getStrapiMedia(item.image?.url) ?? "/assets/placeholder.png"
           }
           alt={item.title}
           fill

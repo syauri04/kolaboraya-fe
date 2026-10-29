@@ -2,7 +2,8 @@ import { data } from "motion/react-client";
 import { fetchFromStrapi } from "./strapi";
 import { SenaraiResponse } from "@/types/senarai";
 
-const SENARAI_POPULATE = "populate=image&populate=senarai_cerita_section";
+const SENARAI_POPULATE =
+  "populate=image&populate=audio&populate=senarai_cerita_section";
 
 // Ambil semua senarai berdasarkan SECTION
 export async function fetchSenaraisBySection(

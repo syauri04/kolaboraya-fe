@@ -1,3 +1,4 @@
+import { getStrapiMedia } from "@/utils/strapiMedia";
 import React from "react";
 import Image from "next/image";
 import { fetchSenaraiBySlug } from "@/services/senarai";
@@ -112,7 +113,7 @@ export default async function SenaraiDetailPage({
       {/* Cover Image */}
       {data.image?.url && (
         <Image
-          src={data.image.url ? `${data.image.url}` : "/assets/placeholder.png"}
+          src={getStrapiMedia(data.image.url) ?? "/assets/placeholder.png"}
           alt={data.title}
           width={1600}
           height={900}

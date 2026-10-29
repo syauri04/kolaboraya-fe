@@ -20,6 +20,7 @@ type BlogSenaraiProps = {
   postsPerPage?: number;
   title: string;
   summary: string;
+  bgColor?: string;
 };
 
 export default function BlogSenarai({
@@ -27,6 +28,7 @@ export default function BlogSenarai({
   postsPerPage = 9,
   title,
   summary,
+  bgColor,
 }: BlogSenaraiProps) {
   // Featured = post pertama (paling baru)
   const featuredPost = posts[0];
@@ -42,7 +44,7 @@ export default function BlogSenarai({
 
   return (
     <section className="container mx-auto px-3 sm:px-6 py-14 md:py-20">
-      <CardSectionSenarai title={title} summary={summary} />
+      <CardSectionSenarai title={title} summary={summary} bgColor={bgColor} />
       {/* 🌟 Featured */}
       {featuredPost && (
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 mb-18 sm:mb-24 items-center">

@@ -7,6 +7,7 @@ export interface SenaraiSectionResponse {
     slug: string;
     summary: string | null;
     order: number;
+    bgColor: string | null;
   }[];
 }
 

@@ -16,17 +16,19 @@ type BlogSenaraiProps = {
   posts: BlogPost[];
   title: string;
   summary: string;
+  bgColor?: string;
 };
 
 export default function BlogSenaraiTwo({
   posts,
   title,
   summary,
+  bgColor,
 }: BlogSenaraiProps) {
   return (
     <section className="container mx-auto px-3 sm:px-6 py-14 md:py-20">
       {/* SECTION TITLE */}
-      <CardSectionSenarai title={title} summary={summary} />
+      <CardSectionSenarai title={title} summary={summary} bgColor={bgColor} />
 
       {/* GRID 2 KOLOM */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12">

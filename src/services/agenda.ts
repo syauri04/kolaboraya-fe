@@ -1,3 +1,4 @@
+import { getStrapiMedia } from "@/utils/strapiMedia";
 import { fetchFromStrapi } from "./strapi";
 import { AgendaItem } from "@/types/agenda";
 import { Category } from "@/types/category";
@@ -25,7 +26,7 @@ export function formatAgendaList(items: StrapiAgendaItem[]): FormattedAgenda[] {
     location: item.location,
     linkRegister: item.linkRegister,
     image: item.image?.url
-      ? `${process.env.NEXT_PUBLIC_API_BASE_URL}${item.image.url}`
+      ? `${getStrapiMedia(item.image.url)}`
       : "/assets/placeholder.png",
   }));
 }

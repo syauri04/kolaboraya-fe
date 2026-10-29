@@ -1,3 +1,4 @@
+import { getStrapiMedia } from "@/utils/strapiMedia";
 import {
   BannerFormatted,
   BannerResponse,
@@ -20,7 +21,7 @@ export async function fetchBannerAgenda(): Promise<BannerFormatted> {
   const bg = data.banner.imageBackground;
   const getUrl = (media: StrapiMediaNullable) => {
     if (!media?.url) return null;
-    return media.url;
+    return getStrapiMedia(media.url);
   };
 
   return {
@@ -47,7 +48,7 @@ export async function fetchBannerProduk(): Promise<BannerFormatted> {
   const fileCollab = data.SectionCollab?.file_ketentuan;
   const getUrl = (media: StrapiMediaNullable | undefined) => {
     if (!media?.url) return null;
-    return media.url;
+    return getStrapiMedia(media.url);
   };
 
   return {
@@ -80,7 +81,7 @@ export async function fetchBannerSenarai(): Promise<BannerFormatted> {
   const fileCollab = data.SectionCollab?.file_ketentuan;
   const getUrl = (media: StrapiMediaNullable | undefined) => {
     if (!media?.url) return null;
-    return media.url;
+    return getStrapiMedia(media.url);
   };
 
   return {

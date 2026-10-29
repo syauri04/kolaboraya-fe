@@ -1,5 +1,7 @@
 "use client";
 
+import { getStrapiMedia } from "@/utils/strapiMedia";
+
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
@@ -8,6 +10,7 @@ import { useInView } from "react-intersection-observer";
 import BlogSenarai from "@/components/BlogSenarai";
 import BlogSenaraiTwo from "@/components/BlogSenaraiTwo";
 import BlogSenaraiFour from "@/components/BlogSenaraiFour";
+import BlogSenaraiKarya, { KaryaPost } from "@/components/BlogSenaraiKarya";
 import SkeletonBanner from "@/components/SkeletonBanner";
 
 import { fetchBannerSenarai } from "@/services/banner";
@@ -28,7 +31,7 @@ function mapSenaraiToBlogPost(item: SenaraiItem): BlogPost {
     slug: item.slug,
     title: item.title,
     summary: item.summary ?? "",
-    image: item.image?.url ? `${item.image.url}` : "/assets/placeholder.png",
+    image: getStrapiMedia(item.image?.url) ?? "/assets/placeholder.png",
     date: new Date(item.publishedAt).toLocaleDateString("id-ID", {
       day: "2-digit",
       month: "long",
@@ -39,12 +42,27 @@ function mapSenaraiToBlogPost(item: SenaraiItem): BlogPost {
   };
 }
 
+function mapSenaraiToKaryaPost(item: SenaraiItem): KaryaPost {
+  return {
+    ...mapSenaraiToBlogPost(item),
+    kategori: item.KategoryKarya ?? null,
+    audio: getStrapiMedia(item.audio?.url),
+    author: item.author_karya ?? null,
+  };
+}
+
+// Section dengan layout per KategoryKarya (artikel, audio, ilustrasi)
+const KARYA_SECTION_SLUG = "catatan-kolektif-pasar-kolaboraya-2026";
+
 type SectionData = {
   sectionId: number;
   layout: number;
+  slug: string;
   title: string;
   summary: string;
+  bgColor?: string;
   posts: BlogPost[];
+  karyaPosts: KaryaPost[];
 };
 
 export default function SenaraiCerita() {
@@ -75,9 +93,28 @@ export default function SenaraiCerita() {
 
         const sections = await fetchSenaraiSections();
 
-        const final = [];
+        const final: SectionData[] = [];
 
         for (const sec of sections) {
+          const base = {
+            sectionId: sec.id,
+            layout: sec.order,
+            slug: sec.slug,
+            title: sec.title,
+            summary: sec.summary ?? "",
+            bgColor: sec.bgColor || undefined,
+          };
+
+          if (sec.slug === KARYA_SECTION_SLUG) {
+            const list = await fetchSenaraisBySection(sec.id);
+            final.push({
+              ...base,
+              posts: [],
+              karyaPosts: list.map(mapSenaraiToKaryaPost),
+            });
+            continue;
+          }
+
           const featured = await fetchFeaturedBySection(sec.id);
           const list = await fetchSenaraisBySection(sec.id);
 
@@ -108,11 +145,9 @@ export default function SenaraiCerita() {
           }
 
           final.push({
-            sectionId: sec.id,
-            layout: sec.order,
-            title: sec.title,
-            summary: sec.summary ?? "",
+            ...base,
             posts: combinedPosts,
+            karyaPosts: [],
           });
         }
 
@@ -175,6 +210,18 @@ export default function SenaraiCerita() {
 
       {/* Render Sections Dinamis */}
       {sectionsData.map((sec) => {
+        if (sec.slug === KARYA_SECTION_SLUG) {
+          return (
+            <BlogSenaraiKarya
+              key={sec.sectionId}
+              posts={sec.karyaPosts}
+              title={sec.title}
+              summary={sec.summary}
+              bgColor={sec.bgColor}
+            />
+          );
+        }
+
         switch (sec.layout) {
           case 1:
           case 2:
@@ -184,6 +231,7 @@ export default function SenaraiCerita() {
                 posts={sec.posts}
                 title={sec.title}
                 summary={sec.summary}
+                bgColor={sec.bgColor}
               />
             );
 
@@ -194,6 +242,7 @@ export default function SenaraiCerita() {
                 posts={sec.posts}
                 title={sec.title}
                 summary={sec.summary}
+                bgColor={sec.bgColor}
               />
             );
 
@@ -204,6 +253,7 @@ export default function SenaraiCerita() {
                 posts={sec.posts}
                 title={sec.title}
                 summary={sec.summary}
+                bgColor={sec.bgColor}
               />
             );
 

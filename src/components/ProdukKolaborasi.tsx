@@ -1,5 +1,7 @@
 "use client";
 
+import { getStrapiMedia } from "@/utils/strapiMedia";
+
 import Image from "next/image";
 import { motion, useAnimation, Variants } from "framer-motion";
 import { useInView } from "react-intersection-observer";
@@ -174,9 +176,7 @@ export default function ProdukKolaborasi({ category }: CategoryProps) {
                 <div className="relative rounded-t-[50px] w-full aspect-square overflow-hidden">
                   <Image
                     src={
-                      cat.image?.url
-                        ? `${cat.image.url}`
-                        : "/assets/placeholder.png"
+                      getStrapiMedia(cat.image?.url) ?? "/assets/placeholder.png"
                     }
                     alt={cat.Category}
                     fill
@@ -233,9 +233,7 @@ export default function ProdukKolaborasi({ category }: CategoryProps) {
                   <div className="relative rounded-t-[40px] w-full aspect-square overflow-hidden">
                     <Image
                       src={
-                        cat.image?.url
-                          ? `${process.env.NEXT_PUBLIC_API_BASE_URL}${cat.image.url}`
-                          : "/assets/placeholder.png"
+                        getStrapiMedia(cat.image?.url) ?? "/assets/placeholder.png"
                       }
                       alt={cat.Category}
                       fill

@@ -72,10 +72,13 @@ export interface SenaraiSection {
   slug: string;
   summary: string | null;
   order: number;
+  bgColor: string | null;
   createdAt: string;
   updatedAt: string;
   publishedAt: string;
 }
+
+export type KategoriKarya = "artikel" | "audio" | "ilustrasi";
 
 export interface SenaraiItem {
   id: number;
@@ -90,6 +93,9 @@ export interface SenaraiItem {
   publishedAt: string;
   image: StrapiImage;
   url_file: string;
+  KategoryKarya: KategoriKarya | null;
+  author_karya: string | null;
+  audio: StrapiImage | null;
   /** RELATION BARU */
   senarai_cerita_section: SenaraiSection | null;
 }

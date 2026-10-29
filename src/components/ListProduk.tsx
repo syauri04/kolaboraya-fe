@@ -1,5 +1,7 @@
 "use client";
 
+import { getStrapiMedia } from "@/utils/strapiMedia";
+
 import { useState, useMemo } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
@@ -39,9 +41,7 @@ export default function ListProduk({ produks, categories }: ListProdukProps) {
       title: p.title,
       lembaga: p.lembaga,
       description: p.description,
-      image: p.image?.url
-        ? process.env.NEXT_PUBLIC_API_BASE_URL + p.image.url
-        : "/placeholder.png",
+      image: getStrapiMedia(p.image?.url) ?? "/placeholder.png",
       category: p.category_produk?.Category ?? "Uncategorized",
     }));
   }, [produks]);

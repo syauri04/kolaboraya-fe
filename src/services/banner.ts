@@ -8,7 +8,7 @@ import { fetchFromStrapi } from "./strapi";
 
 export async function fetchBannerAgenda(): Promise<BannerFormatted> {
   const res = await fetchFromStrapi<BannerResponse>(
-    "/banner-agenda?populate=banner.imageBackground",
+    "/banner-agenda?populate=banner.imageBackground&populate=SectionCollab.image&populate=SectionCollab.file_ketentuan",
   );
 
   const data = res.data;
@@ -19,7 +19,9 @@ export async function fetchBannerAgenda(): Promise<BannerFormatted> {
 
   const API_URL = process.env.NEXT_PUBLIC_API_BASE_URL ?? "";
   const bg = data.banner.imageBackground;
-  const getUrl = (media: StrapiMediaNullable) => {
+  const bgCollab = data.SectionCollab?.image;
+  const fileCollab = data.SectionCollab?.file_ketentuan;
+  const getUrl = (media: StrapiMediaNullable | undefined) => {
     if (!media?.url) return null;
     return getStrapiMedia(media.url);
   };
@@ -28,6 +30,12 @@ export async function fetchBannerAgenda(): Promise<BannerFormatted> {
     title: data.banner.title,
     bgColor: data.banner.bgColor,
     imageBackground: getUrl(bg),
+    titleCollab: data.SectionCollab?.title ?? "",
+    summaryCollab: data.SectionCollab?.summary ?? "",
+    bgColorCollab: data.SectionCollab?.bgColor ?? "",
+    linkCollab: data.SectionCollab?.link_submission ?? "",
+    imageCollab: getUrl(bgCollab),
+    fileCollab: getUrl(fileCollab),
   };
 }
 

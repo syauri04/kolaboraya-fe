@@ -1,5 +1,6 @@
 "use client";
 
+import CollaborationSection from "@/components/CollaborationSection";
 import ListAgenda from "@/components/ListAgenda";
 import SkeletonBanner from "@/components/SkeletonBanner";
 import { fetchAgendaCategories, fetchAgendas } from "@/services/agenda";
@@ -89,6 +90,15 @@ export default function Agenda() {
           />
         </motion.div>
       </section>
+      <CollaborationSection
+        title={banner?.titleCollab}
+        summary={banner?.summaryCollab}
+        bgColor={banner?.bgColorCollab}
+        link={banner?.linkCollab}
+        image={banner?.imageCollab}
+        file={banner?.fileCollab}
+        type="produk"
+      />
 
       <ListAgenda agendas={agendas} categories={categories} />
     </div>
